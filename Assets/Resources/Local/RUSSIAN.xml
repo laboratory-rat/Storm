@@ -1,0 +1,15 @@
+<Local>
+  <area id="langs">
+    <element id="english">Английский</element>
+    <element id="russian">Русский</element>
+  </area>
+  <area id="main_menu">
+    <element id="levels">Уровни</element>
+    <element id="options">Настройки</element>
+    <element id="info">Информация</element>
+    <element id="back">Назад</element>
+  </area>
+  <area id="errors">
+    <element id="button2">Hello2</element>
+  </area>
+</Local>

@@ -1,0 +1,15 @@
+<Local>
+  <area id="langs">
+    <element id="english">English</element>
+    <element id="russian">Russian</element>
+  </area>
+  <area id="main_menu">
+    <element id="levels">Levels</element>
+    <element id="options">Options</element>
+    <element id="info">Info</element>
+    <element id="back">Back</element>
+  </area>
+  <area id="errors">
+    <element id="button2">Hello2</element>
+  </area>
+</Local>
