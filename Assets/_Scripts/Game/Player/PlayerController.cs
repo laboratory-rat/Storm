@@ -29,7 +29,7 @@ namespace Game
         //public UnityEngine.UI.Text DebugText;
 
         public bool IsGrounded { get { return _collisions.Count > 0; } }
-        public bool IsDestroyed { get; private set; }
+        public bool IsDestroyed { get { return _destroySleep > 0; } }
 
         private float _destroySleep = 0f;
 
@@ -51,7 +51,6 @@ namespace Game
         {
             _rb = GetComponent<Rigidbody>();
             _anim = GetComponent<Animator>();
-            IsDestroyed = false;
 
             _start = GameObject.FindGameObjectWithTag("Start").GetComponent<StateBox>();
             ApplyStayBox(_start);
@@ -66,7 +65,6 @@ namespace Game
                 if (_destroySleep <= 0)
                 {
                     _destroySleep = 0f;
-                    IsDestroyed = false;
                     Destroy(_oldDestroy);
 
                     if (_checkPoint)
@@ -134,7 +132,6 @@ namespace Game
                 GameController.Instance.PlayerDestroy();
             }
 
-            IsDestroyed = true;
             _destroySleep += DestroySleep;
             _anim.SetTrigger("Destroy");
             _oldDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
@@ -150,7 +147,7 @@ namespace Game
 
         public void Jump()
         {
-            if (IsGrounded)
+            if (IsGrounded && !IsDestroyed)
             {
                 _canRotate = true;
                 _rb.velocity = GetJumpVector();
