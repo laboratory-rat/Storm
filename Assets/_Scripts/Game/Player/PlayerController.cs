@@ -24,10 +24,16 @@ namespace Game
         public GravityVector GVector = GravityVector.Down;
 
         public GameObject DestroyPrefab;
+        public float DestroySleep = 5f;
 
-        public UnityEngine.UI.Text DebugText;
+        //public UnityEngine.UI.Text DebugText;
 
         public bool IsGrounded { get { return _collisions.Count > 0; } }
+        public bool IsDestroyed { get; private set; }
+
+        private float _destroySleep = 0f;
+
+        //private
 
         private bool _canRotate = false;
         private Rigidbody _rb;
@@ -36,6 +42,7 @@ namespace Game
         private List<GameObject> _collisions = new List<GameObject>();
         private MoveDirection _currentDirection = MoveDirection.None;
         private float _zAccel = 0f;
+        private GameObject _oldDestroy = null;
 
         private StateBox _start = null;
         private StateBox _checkPoint = null;
@@ -44,6 +51,7 @@ namespace Game
         {
             _rb = GetComponent<Rigidbody>();
             _anim = GetComponent<Animator>();
+            IsDestroyed = false;
 
             _start = GameObject.FindGameObjectWithTag("Start").GetComponent<StateBox>();
             ApplyStayBox(_start);
@@ -52,6 +60,31 @@ namespace Game
 
         public void FixedUpdate()
         {
+            if (IsDestroyed)
+            {
+                _destroySleep -= Time.deltaTime;
+                if (_destroySleep <= 0)
+                {
+                    _destroySleep = 0f;
+                    IsDestroyed = false;
+                    Destroy(_oldDestroy);
+
+                    if (_checkPoint)
+                    {
+                        ApplyPosition(_checkPoint.gameObject);
+                        ApplyStayBox(_checkPoint);
+                    }
+                    else
+                    {
+                        ApplyPosition(_start.gameObject);
+                        ApplyStayBox(_start);
+                    }
+                    _anim.SetTrigger("Alive");
+                }
+                else
+                    return;
+            }
+
             if (_sleep > 0)
                 _sleep--;
 
@@ -101,16 +134,10 @@ namespace Game
                 GameController.Instance.PlayerDestroy();
             }
 
-            if (_checkPoint)
-            {
-                ApplyPosition(_checkPoint.gameObject);
-                ApplyStayBox(_checkPoint);
-            }
-            else
-            {
-                ApplyPosition(_start.gameObject);
-                ApplyStayBox(_start);
-            }
+            IsDestroyed = true;
+            _destroySleep += DestroySleep;
+            _anim.SetTrigger("Destroy");
+            _oldDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
         }
 
         #region Move
@@ -127,6 +154,7 @@ namespace Game
             {
                 _canRotate = true;
                 _rb.velocity = GetJumpVector();
+                _anim.SetTrigger("Jump");
                 _zAccel = Input.acceleration.z;
             }
         }

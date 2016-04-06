@@ -199,7 +199,7 @@ Animator:
   m_GameObject: {fileID: 122798}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1a50b8d8383a55548b8522cdf3b5f12d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 05d054806751cea429580d298d8653ad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -240,8 +240,8 @@ MonoBehaviour:
   Gravity: 9.81
   SleepTime: 48
   GVector: 0
-  DestroyPrefab: {fileID: 0}
-  DebugText: {fileID: 0}
+  DestroyPrefab: {fileID: 152580, guid: 7886c32b907f3e84b83698c0748ee2ab, type: 2}
+  DestroySleep: 5
 --- !u!124 &12457844
 Behaviour:
   m_ObjectHideFlags: 1

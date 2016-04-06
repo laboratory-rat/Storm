@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -81,7 +82,10 @@ namespace Controller
             {
                 if (sl != "" && SceneManager.GetActiveScene().name == LOADING)
                 {
-                    SceneManager.LoadScene(sl);
+                    var ao = SceneManager.LoadSceneAsync(sl);
+                    ao.allowSceneActivation = false;
+                    StartCoroutine(AsyncLoad(ao));
+                    //SceneManager.LoadScene(sl);
                     sl = "";
                 }
             }
@@ -89,6 +93,16 @@ namespace Controller
             {
                 ErrorController.Instance.Send(this, e.Message);
             }
+        }
+
+        private IEnumerator AsyncLoad(AsyncOperation ao)
+        {
+            while (!ao.isDone)
+            {
+                Debug.Log(ao.progress);
+                yield return null;
+            }
+            ao.allowSceneActivation = true;
         }
     }
 }
