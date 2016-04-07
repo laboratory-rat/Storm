@@ -11,6 +11,10 @@ namespace Controller
 
         private static ConfigController _instance = null;
 
+        public delegate void SimpleVoid();
+
+        public event SimpleVoid OnConfigSave;
+
         public static ConfigController Instance
         {
             get { return _instance; }
@@ -70,6 +74,9 @@ namespace Controller
                     XmlSerializer ser = new XmlSerializer(typeof(ConfigFile));
                     ser.Serialize(stream, Config);
                 }
+
+                if (OnConfigSave != null)
+                    OnConfigSave.Invoke();
             }
         }
 
@@ -77,8 +84,8 @@ namespace Controller
         public class ConfigFile
         {
             public string Local = "NULL";
-            public string Version = "0.1";
-            public string Xyu = "Xyu";
+            public string Backgroud = "1";
+            public string Sfx = "1";
 
             public ConfigFile()
             {

@@ -17,14 +17,23 @@ namespace Game
     public class PlayerController : MonoBehaviour
     {
         public float Speed = 5f;
+        public bool CanJump = true;
         public float JumpPower = 5f;
         public float Gravity = 9.81f;
         public int SleepTime = 48;
 
+        public bool CanRotate = true;
         public GravityVector GVector = GravityVector.Down;
 
         public GameObject DestroyPrefab;
         public float DestroySleep = 5f;
+
+        [Header("Sounds")]
+        public AudioClip SoundJump;
+
+        public AudioClip SoundRotate;
+        public AudioClip SoundDetroy;
+        public AudioClip SoundAlive;
 
         //public UnityEngine.UI.Text DebugText;
 
@@ -42,7 +51,7 @@ namespace Game
         private List<GameObject> _collisions = new List<GameObject>();
         private MoveDirection _currentDirection = MoveDirection.None;
         private float _zAccel = 0f;
-        private GameObject _oldDestroy = null;
+        private GameObject _lastDestroy = null;
 
         private StateBox _start = null;
         private StateBox _checkPoint = null;
@@ -65,7 +74,7 @@ namespace Game
                 if (_destroySleep <= 0)
                 {
                     _destroySleep = 0f;
-                    Destroy(_oldDestroy);
+                    Destroy(_lastDestroy);
 
                     if (_checkPoint)
                     {
@@ -78,6 +87,7 @@ namespace Game
                         ApplyStayBox(_start);
                     }
                     _anim.SetTrigger("Alive");
+                    SoundController.Instance.PlaySingle(SoundAlive, true);
                 }
                 else
                     return;
@@ -116,11 +126,12 @@ namespace Game
             //    }
             //}
 
-            if (_canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.3f)
+            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.3f)
             {
                 if (GameController.Instance != null)
                     GameController.Instance.PlayerRotate();
 
+                SoundController.Instance.PlaySingle(SoundRotate, true);
                 Rotate();
             }
         }
@@ -134,7 +145,8 @@ namespace Game
 
             _destroySleep += DestroySleep;
             _anim.SetTrigger("Destroy");
-            _oldDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
+            SoundController.Instance.PlaySingle(SoundDetroy, true);
+            _lastDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
         }
 
         #region Move
@@ -147,11 +159,12 @@ namespace Game
 
         public void Jump()
         {
-            if (IsGrounded && !IsDestroyed)
+            if (IsGrounded && !IsDestroyed && CanJump)
             {
                 _canRotate = true;
                 _rb.velocity = GetJumpVector();
                 _anim.SetTrigger("Jump");
+                SoundController.Instance.PlaySingle(SoundJump, true);
                 _zAccel = Input.acceleration.z;
             }
         }
@@ -492,6 +505,12 @@ namespace Game
 
             if (sb.ChangeSpeed)
                 Speed = sb.Speed;
+
+            if (sb.ChangeAllowJump)
+                CanJump = sb.CanJump;
+
+            if (sb.ChangeAllowRotate)
+                CanRotate = sb.CanRotate;
         }
 
         #endregion StateBoxes

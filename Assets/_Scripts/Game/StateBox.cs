@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Game
 {
@@ -14,9 +14,13 @@ namespace Game
         public bool ChangeSpeed = false;
         public float Speed;
 
+        public bool ChangeAllowJump = false;
+        public bool CanJump = true;
         public bool ChangeJumpPower = false;
         public float JumpPower;
 
+        public bool ChangeAllowRotate = false;
+        public bool CanRotate = true;
         public bool ChangeGrav = false;
         public float Gravity;
 
