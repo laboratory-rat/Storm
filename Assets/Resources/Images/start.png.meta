@@ -1,0 +1,90 @@
+fileFormatVersion: 2
+guid: b5dfba2b605384f43bb83e392b6a178f
+timeCreated: 1460055844
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "\u043C\u0435\u043D\u044E10_0000s_0000_\u041F\u0440\u044F\u043C\u043E\u0443\u0433\u043E\u043B\u044C\u043D\u0438\u043A,-\u0441\u043A\u0440\u0443\u0433\u043B.-\u0443\u0433\u043B\u044B-2_0"
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 365, y: 180, z: 363, w: 274}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: "\u043C\u0435\u043D\u044E10_0000s_0000_\u041F\u0440\u044F\u043C\u043E\u0443\u0433\u043E\u043B\u044C\u043D\u0438\u043A,-\u0441\u043A\u0440\u0443\u0433\u043B.-\u0443\u0433\u043B\u044B-2_0"
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 178
+        width: 417
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 206.5, y: -83}
+        - {x: 208.5, y: -78}
+        - {x: 208.5, y: 78}
+        - {x: 206.5, y: 83}
+        - {x: 200.5, y: 89}
+        - {x: 195.5, y: 91}
+        - {x: -195.5, y: 91}
+        - {x: -200.5, y: 89}
+        - {x: -206.5, y: 83}
+        - {x: -208.5, y: 78}
+        - {x: -208.5, y: -78}
+        - {x: -206.5, y: -83}
+        - {x: -200.5, y: -89}
+        - {x: -195.5, y: -91}
+        - {x: 195.5, y: -91}
+        - {x: 200.5, y: -89}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
