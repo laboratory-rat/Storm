@@ -215,7 +215,7 @@ namespace Game
                 case GravityVector.Down:
                     if (md == GravityVector.Left)
                     {
-                        StartCoroutine(Rotation(90));
+                        StartCoroutine(Rotation(-90));
                     }
                     else if (md == GravityVector.Up)
                     {
@@ -223,7 +223,7 @@ namespace Game
                     }
                     else
                     {
-                        StartCoroutine(Rotation(-90));
+                        StartCoroutine(Rotation(90));
                     }
                     break;
 
@@ -245,7 +245,7 @@ namespace Game
                 case GravityVector.Up:
                     if (md == GravityVector.Left)
                     {
-                        StartCoroutine(Rotation(-90));
+                        StartCoroutine(Rotation(90));
                     }
                     else if (md == GravityVector.Down)
                     {
@@ -253,7 +253,7 @@ namespace Game
                     }
                     else
                     {
-                        StartCoroutine(Rotation(90));
+                        StartCoroutine(Rotation(-90));
                     }
                     break;
 
@@ -419,7 +419,8 @@ namespace Game
             StateBox sb;
             if (sb = col.GetComponent<StateBox>())
             {
-                UseStateBox(sb);
+                if (sb.Type != StateBoxType.Start)
+                    UseStateBox(sb);
             }
         }
 
@@ -492,7 +493,8 @@ namespace Game
 
         private void ApplyStayBox(StateBox sb)
         {
-            GVector = sb.GVector;
+            if (sb.GVector != GVector)
+                Rotate(sb.GVector);
 
             if (sb.ChangeGrav)
                 Gravity = sb.Gravity;
