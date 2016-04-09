@@ -81,7 +81,7 @@ namespace Controller
             return new List<Level>();
         }
 
-        private void OpenNew(string world, string level)
+        public void OpenNew(string world, string level)
         {
             foreach (var w in OpenWords)
             {

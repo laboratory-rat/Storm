@@ -9,6 +9,7 @@ namespace UI
     public class WorldSpacer : MonoBehaviour
     {
         public string Name;
+        public Text Title;
         public GameObject LevelPrefab;
 
         private List<Level> _levels = null;
