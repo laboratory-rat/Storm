@@ -387,7 +387,9 @@ namespace Game
 
         private void OnCollisionEnter(Collision col)
         {
-            if (Vector3.Angle(col.contacts[0].normal, GetPlayerVector()) < 30f && !_collisions.Contains(col.gameObject))
+            var angle = Vector3.Angle(col.contacts[0].normal, GetPlayerVector());
+
+            if (angle <= 30f && !_collisions.Contains(col.gameObject))
                 _collisions.Add(col.gameObject);
 
             //Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
@@ -400,7 +402,7 @@ namespace Game
             {
                 p.OnEnter(this);
 
-                if (p.IsMoving)
+                if (p.IsMoving && angle <= 30f)
                 {
                     ParentTransform.SetParent(p.gameObject.transform);
                 }
@@ -426,7 +428,7 @@ namespace Game
             {
                 p.OnExit(this);
 
-                if (p.IsMoving)
+                if (p.IsMoving && ParentTransform.parent == p.gameObject.transform)
                     ParentTransform.SetParent(null);
             }
         }

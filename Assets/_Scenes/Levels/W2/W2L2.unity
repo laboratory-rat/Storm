@@ -1032,15 +1032,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11497114, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
       propertyPath: LevelName
-      value: W2L1
+      value: W2L3
       objectReference: {fileID: 0}
     - target: {fileID: 11493648, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
       propertyPath: Target
-      value: Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493648, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: LoaderScene
-      value: 0
+      value: W2L3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}

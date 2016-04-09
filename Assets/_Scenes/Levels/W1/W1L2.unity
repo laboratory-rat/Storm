@@ -1026,6 +1026,14 @@ Prefab:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Jump
       objectReference: {fileID: 0}
+    - target: {fileID: 11497114, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
+      propertyPath: LevelName
+      value: W1L3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493648, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
+      propertyPath: Target
+      value: W1L3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
   m_IsPrefabParent: 0

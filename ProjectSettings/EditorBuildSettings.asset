@@ -17,3 +17,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Levels/W1/W1L2.unity
   - enabled: 1
     path: Assets/_Scenes/Levels/W1/W1L3.unity
+  - enabled: 1
+    path: Assets/_Scenes/Levels/W2/W2L1.unity
+  - enabled: 1
+    path: Assets/_Scenes/Levels/W2/W2L2.unity
+  - enabled: 1
+    path: Assets/_Scenes/Levels/W2/W2L3.unity
