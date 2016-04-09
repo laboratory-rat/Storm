@@ -12,6 +12,7 @@ namespace Game.Platform
     public class _PlatformBase : MonoBehaviour
     {
         public bool DefaultActive = true;
+        public bool IsMoving = false;
 
         protected PlayerController _player;
 

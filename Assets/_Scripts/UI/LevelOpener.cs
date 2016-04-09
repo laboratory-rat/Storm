@@ -16,7 +16,10 @@ namespace Game.UI
         private void OpenLevel()
         {
             if (!LevelController.Instance.IsLevelOpen(World, LevelName))
+            {
                 LevelController.Instance.OpenNew(World, LevelName);
+                LevelController.Instance.SaveProgress();
+            }
         }
 
         private void OnDestroy()

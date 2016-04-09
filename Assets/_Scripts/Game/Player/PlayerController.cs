@@ -16,6 +16,8 @@ namespace Game
     [RequireComponent(typeof(Rigidbody), typeof(Animator))]
     public class PlayerController : MonoBehaviour
     {
+        public Transform ParentTransform;
+
         public float Speed = 5f;
         public bool CanJump = true;
         public float JumpPower = 5f;
@@ -295,6 +297,27 @@ namespace Game
 
         #region Vectors
 
+        private Vector3 GetPlayerVector()
+        {
+            switch (GVector)
+            {
+                case GravityVector.Down:
+                    return Vector3.up;
+
+                case GravityVector.Up:
+                    return Vector3.down;
+
+                case GravityVector.Left:
+                    return Vector3.left;
+
+                case GravityVector.Right:
+                    return Vector3.right;
+
+                default:
+                    return Vector3.zero;
+            }
+        }
+
         private Vector3 GetMoveVector(float speed)
         {
             switch (GVector)
@@ -364,8 +387,10 @@ namespace Game
 
         private void OnCollisionEnter(Collision col)
         {
-            if (!_collisions.Contains(col.gameObject))
+            if (Vector3.Angle(col.contacts[0].normal, GetPlayerVector()) < 30f && !_collisions.Contains(col.gameObject))
                 _collisions.Add(col.gameObject);
+
+            //Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
 
             if (_canRotate)
                 _canRotate = false;
@@ -374,6 +399,11 @@ namespace Game
             if (p != null)
             {
                 p.OnEnter(this);
+
+                if (p.IsMoving)
+                {
+                    ParentTransform.SetParent(p.gameObject.transform);
+                }
             }
         }
 
@@ -395,6 +425,9 @@ namespace Game
             if (p != null)
             {
                 p.OnExit(this);
+
+                if (p.IsMoving)
+                    ParentTransform.SetParent(null);
             }
         }
 
