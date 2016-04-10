@@ -308,10 +308,10 @@ namespace Game
                     return Vector3.down;
 
                 case GravityVector.Left:
-                    return Vector3.left;
+                    return Vector3.right;
 
                 case GravityVector.Right:
-                    return Vector3.right;
+                    return Vector3.left;
 
                 default:
                     return Vector3.zero;
@@ -326,13 +326,13 @@ namespace Game
                     return new Vector3(speed, _rb.velocity.y);
 
                 case GravityVector.Left:
-                    return new Vector3(_rb.velocity.y, -speed);
+                    return new Vector3(_rb.velocity.x, -speed);
 
                 case GravityVector.Up:
                     return new Vector3(-speed, _rb.velocity.y);
 
                 case GravityVector.Right:
-                    return new Vector3(_rb.velocity.y, speed);
+                    return new Vector3(_rb.velocity.x, speed);
 
                 default:
                     return Vector3.zero;
@@ -392,7 +392,7 @@ namespace Game
             if (angle <= 30f && !_collisions.Contains(col.gameObject))
                 _collisions.Add(col.gameObject);
 
-            //Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
+            Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
 
             if (_canRotate)
                 _canRotate = false;
