@@ -3,7 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Game.UI
 {
     public class TimerUI : MonoBehaviour
     {

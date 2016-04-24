@@ -40,34 +40,36 @@ namespace Controller
 
         public event SceneChanged OnSceneChanged;
 
-        private string sl = "";
+        public string sl = "";
 
         private void Awake()
         {
             Init();
         }
 
+        public void ReloadLevel(bool b)
+        {
+            ChangeScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single, b);
+        }
+
         public void ChangeScene(string scene, LoadSceneMode mode, bool LoadScene = true)
         {
-            if (scene != SceneManager.GetActiveScene().name)
-            {
-                if (OnSceneChanged != null)
-                    OnSceneChanged.Invoke();
+            if (OnSceneChanged != null)
+                OnSceneChanged.Invoke();
 
-                try
+            try
+            {
+                if (LoadScene)
                 {
-                    if (LoadScene)
-                    {
-                        SceneManager.LoadScene(LOADING, LoadSceneMode.Single);
-                        sl = scene;
-                    }
-                    else
-                        SceneManager.LoadScene(scene, mode);
+                    SceneManager.LoadScene(LOADING, LoadSceneMode.Single);
+                    sl = scene;
                 }
-                catch (Exception e)
-                {
-                    ErrorController.Instance.Send(this, e.Message);
-                }
+                else
+                    SceneManager.LoadScene(scene, mode);
+            }
+            catch (Exception e)
+            {
+                ErrorController.Instance.Send(this, e.Message);
             }
         }
 
@@ -76,33 +78,38 @@ namespace Controller
             return SceneManager.GetActiveScene().name;
         }
 
-        private void OnLevelWasLoaded()
-        {
-            try
-            {
-                if (sl != "" && SceneManager.GetActiveScene().name == LOADING)
-                {
-                    var ao = SceneManager.LoadSceneAsync(sl);
-                    ao.allowSceneActivation = false;
-                    StartCoroutine(AsyncLoad(ao));
-                    //SceneManager.LoadScene(sl);
-                    sl = "";
-                }
-            }
-            catch (Exception e)
-            {
-                ErrorController.Instance.Send(this, e.Message);
-            }
-        }
+        //        private void OnLevelWasLoaded()
+        //        {
+        //            try
+        //            {
+        //                if (sl != "" && SceneManager.GetActiveScene().name == LOADING)
+        //                {
+        //private                    //var ao = SceneManager.LoadSceneAsync(sl);
+        //                           //ao.allowSceneActivation = false;
+        //                    StartCoroutine(AsyncLoad(sl));
 
-        private IEnumerator AsyncLoad(AsyncOperation ao)
+        //                    //SceneManager.LoadScene(sl);
+        //                    sl = "";
+        //                }
+        //}
+
+        //            catch (Exception e)
+        //            {
+        //                ErrorController.Instance.Send(this, e.Message);
+        //}
+        //        }
+
+        private IEnumerator AsyncLoad(string level)
         {
+            var ao = SceneManager.LoadSceneAsync(level);
+            ao.allowSceneActivation = false;
+
             while (!ao.isDone)
             {
                 Debug.Log(ao.progress);
-                yield return null;
+                yield return ao;
             }
-            ao.allowSceneActivation = true;
+            //ao.allowSceneActivation = true;
         }
     }
 }

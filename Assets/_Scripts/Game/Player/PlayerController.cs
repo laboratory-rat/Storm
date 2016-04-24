@@ -13,10 +13,12 @@ namespace Game
 
     public enum GravityVector { Down = 0, Left, Up, Right };
 
-    [RequireComponent(typeof(Rigidbody), typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody), typeof(AudioSource))]
     public class PlayerController : MonoBehaviour
     {
         public Transform ParentTransform;
+        public Animator Anim;
+        public Transform Armature;
 
         public float Speed = 5f;
         public bool CanJump = true;
@@ -48,12 +50,14 @@ namespace Game
 
         private bool _canRotate = false;
         private Rigidbody _rb;
-        private Animator _anim;
+        private AudioSource _audio;
         private int _sleep = 0;
         private List<GameObject> _collisions = new List<GameObject>();
         private MoveDirection _currentDirection = MoveDirection.None;
+        private MoveDirection _lastDirection = MoveDirection.Right;
         private float _zAccel = 0f;
         private GameObject _lastDestroy = null;
+        private SkinnedMeshRenderer _mesh;
 
         private StateBox _start = null;
         private StateBox _checkPoint = null;
@@ -61,7 +65,8 @@ namespace Game
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            _anim = GetComponent<Animator>();
+            _audio = GetComponent<AudioSource>();
+            _mesh = GetComponentInChildren<SkinnedMeshRenderer>();
 
             _start = GameObject.FindGameObjectWithTag("Start").GetComponent<StateBox>();
             ApplyStayBox(_start);
@@ -88,8 +93,10 @@ namespace Game
                         ApplyPosition(_start.gameObject);
                         ApplyStayBox(_start);
                     }
-                    _anim.SetTrigger("Alive");
-                    SoundController.Instance.PlaySingle(SoundAlive, true);
+                    Anim.SetTrigger("Alive");
+                    _audio.clip = SoundAlive;
+                    _audio.Play();
+                    _mesh.enabled = true;
                 }
                 else
                     return;
@@ -99,11 +106,17 @@ namespace Game
                 _sleep--;
 
             _rb.AddForce(GetGrav());
+            Anim.SetBool("Ground", IsGrounded);
 
             if (_currentDirection != MoveDirection.None)
             {
                 var speed = _currentDirection == MoveDirection.Left ? -Speed : Speed;
                 _rb.velocity = GetMoveVector(speed);
+                Anim.SetBool("Run", true);
+            }
+            else
+            {
+                Anim.SetBool("Run", false);
             }
 
             // Bug. Мой пердак чуть не рванул.
@@ -133,7 +146,9 @@ namespace Game
                 if (GameController.Instance != null)
                     GameController.Instance.PlayerRotate();
 
-                SoundController.Instance.PlaySingle(SoundRotate, true);
+                _audio.clip = SoundRotate;
+                _audio.Play();
+                Anim.SetTrigger("Rotate");
                 Rotate();
             }
         }
@@ -146,9 +161,11 @@ namespace Game
             }
 
             _destroySleep += DestroySleep;
-            _anim.SetTrigger("Destroy");
-            SoundController.Instance.PlaySingle(SoundDetroy, true);
+            //Anim.SetTrigger("Destroy");
+            _audio.clip = SoundDetroy;
+            _audio.Play();
             _lastDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
+            _mesh.enabled = false;
         }
 
         #region Move
@@ -156,7 +173,22 @@ namespace Game
         public void SetDirection(int i)
         {
             MoveDirection md = (MoveDirection)i;
+
+            if (_currentDirection == MoveDirection.None && md != MoveDirection.None)
+                Anim.SetTrigger("Run");
+            else if (md == MoveDirection.None && _currentDirection != MoveDirection.None)
+                Anim.SetTrigger("Stop");
+
             _currentDirection = md;
+
+            if (md != MoveDirection.None && md != _lastDirection)
+            {
+                //Armature.Rotate(Vector3.forward, 180f, Space.Self);
+                //Armature.localRotation = new Quaternion(Armature.localRotation.x, Armature.localRotation.y + 180, Armature.localRotation.z, Armature.localRotation.w);
+                //var e = new Quaternion(Armature.rotation.x, Armature.rotation.y + 180, Armature.rotation.z, Armature.rotation.w);
+                Armature.Rotate(Vector3.up, 180f, Space.Self);
+                _lastDirection = md;
+            }
         }
 
         public void Jump()
@@ -165,8 +197,9 @@ namespace Game
             {
                 _canRotate = true;
                 _rb.velocity = GetJumpVector();
-                _anim.SetTrigger("Jump");
-                SoundController.Instance.PlaySingle(SoundJump, true);
+                Anim.SetTrigger("Jump");
+                _audio.clip = SoundJump;
+                _audio.Play();
                 _zAccel = Input.acceleration.z;
             }
         }
@@ -520,10 +553,24 @@ namespace Game
         public void ApplyPosition(GameObject go)
         {
             var pos = new Vector3(go.transform.position.x, go.transform.position.y, go.transform.position.z);
-            transform.position = pos;
+            ParentTransform.position = pos;
 
-            var q = go.transform.rotation;
-            transform.rotation = q;
+            transform.localPosition = Vector3.zero;//.position = pos;
+
+            //var q = go.transform.rotation;
+            var q = new Quaternion(go.transform.rotation.x, go.transform.rotation.y, go.transform.rotation.z, go.transform.rotation.w);
+            ParentTransform.rotation = q;
+
+            //transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+            //transform.rotation = q;
+
+            //ParentTransform.Rotate(0f, 90f, 0f, Space.World);
+
+            //ParentTransform.Rotate(Vector3.up, 90);
+
+            //transform.localRotation.Set(0f, 270f, 0f, 1f);
+
+            //transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
         private void ApplyStayBox(StateBox sb)

@@ -690,12 +690,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2f2c9bb5a21971479f0cd4552d538ae, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &736585902 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11489654, guid: a2f2c9bb5a21971479f0cd4552d538ae,
-    type: 2}
-  m_PrefabInternal: {fileID: 736585901}
-  m_Script: {fileID: 11500000, guid: 6b5eb288de8a8f1429e4919e6f981dad, type: 3}
 --- !u!1001 &786659713
 Prefab:
   m_ObjectHideFlags: 0
@@ -984,62 +978,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22425668, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486424, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 736585902}
-    - target: {fileID: 11486424, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDirection
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486424, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDirection
-      objectReference: {fileID: 0}
-    - target: {fileID: 11486424, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 736585902}
-    - target: {fileID: 11491646, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 736585902}
-    - target: {fileID: 11491646, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDirection
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491646, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 736585902}
-    - target: {fileID: 11491646, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDirection
-      objectReference: {fileID: 0}
-    - target: {fileID: 11431348, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 736585902}
-    - target: {fileID: 11431348, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Jump
-      objectReference: {fileID: 0}
-    - target: {fileID: 11497114, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: World
-      value: Second
-      objectReference: {fileID: 0}
-    - target: {fileID: 11497114, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: LevelName
-      value: W2L1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493648, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: Target
-      value: Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493648, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: LoaderScene
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

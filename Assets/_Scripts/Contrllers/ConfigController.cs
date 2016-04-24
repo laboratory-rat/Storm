@@ -86,6 +86,7 @@ namespace Controller
             public string Local = "NULL";
             public string Backgroud = "1";
             public string Sfx = "1";
+            public string Notification = "1";
 
             public ConfigFile()
             {

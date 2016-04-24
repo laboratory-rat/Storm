@@ -41,25 +41,14 @@ namespace Controller
             Init();
         }
 
-        public readonly List<World> Worlds = new List<World>
-        {
-            new World {Name = "First", Levels = new List<Level>
-            {
-                new Level ("W1L1"),
-                new Level ("W1L2"),
-                new Level ("W1L3"),
-            } },
+        public delegate void SimpleVoid();
 
-            new World {Name = "Second", Levels = new List<Level>
-            {
-                new Level ("W2L1"),
-                new Level ("W2L2"),
-                new Level ("W2L3"),
-            } },
-        };
+        public event SimpleVoid OnLevelsChanged;
 
         public List<World> OpenWords = null;
-        //public GameObject ButtonPrefab;
+
+        public Level CurrentLevel;
+        public string CurrentWorld;
 
         private const string SAVE = "/slc.bin";
         private string path;
@@ -70,60 +59,56 @@ namespace Controller
             LoadProgress();
         }
 
-        public List<Level> GetLevels(string world)
-        {
-            foreach (var w in Worlds)
-            {
-                if (w.Name == world)
-                    return w.Levels;
-            }
-
-            return new List<Level>();
-        }
-
         public void OpenNew(string world, string level)
         {
-            foreach (var w in OpenWords)
+            World w;
+            if ((w = GetWorld(world)) == null)
             {
-                if (w.Name == world)
-                {
-                    foreach (var l in w.Levels)
-                    {
-                        if (l.Name == level)
-                            return;
-                    }
-                    w.Levels.Add(new Level(level));
-                    return;
-                }
+                w = LevelPackage.GetWorld(world);
+                var newW = new World(w);
+                OpenWords.Add(newW);
             }
-            OpenWords.Add(new World { Name = world, Levels = new List<Level> { new Level(level), } });
+            else if (GetLevelByScene(w.Name, level) == null)
+            {
+                Level l = new Level(LevelPackage.GetLevelByScene(world, level));
+                w.Levels.Add(l);
+            }
+            else
+                return;
+
+            SaveProgress();
+
+            if (OnLevelsChanged != null)
+                OnLevelsChanged.Invoke();
         }
 
-        public void SetScore(string world, string level, int time, int rate)
+        public void UpLevelRate(string world, string level, FlashRate rate)
         {
-            var w = from ww in OpenWords where ww.Name == world select ww;
-            var l = from ll in w.FirstOrDefault().Levels where ll.Name == level select ll;
+            var l = GetLevel(world, level);
 
-            var le = l.FirstOrDefault();
-            le.Rate = rate;
-            le.Seconds = time;
-            SaveProgress();
+            if (l != null)
+            {
+                if ((int)l.Flash < (int)rate)
+                    l.Flash = rate;
+
+                SaveProgress();
+            }
         }
 
         #region Bool
 
-        public bool IsWorldOpen(string world)
+        public World GetWorld(string world)
         {
             foreach (var w in OpenWords)
             {
                 if (w.Name == world)
-                    return true;
+                    return w;
             }
 
-            return false;
+            return null;
         }
 
-        public bool IsLevelOpen(string world, string level)
+        public Level GetLevel(string world, string level)
         {
             foreach (var w in OpenWords)
             {
@@ -132,13 +117,41 @@ namespace Controller
                     foreach (var l in w.Levels)
                     {
                         if (l.Name == level)
-                            return true;
+                            return l;
                     }
-                    return false;
+                    return null;
                 }
             }
 
-            return false;
+            return null;
+        }
+
+        public Level GetLevelByScene(string world, string scene)
+        {
+            foreach (var w in OpenWords)
+            {
+                if (w.Name == world)
+                {
+                    foreach (var l in w.Levels)
+                    {
+                        if (l.LevelName == scene)
+                            return l;
+                    }
+                    return null;
+                }
+            }
+
+            return null;
+        }
+
+        public Level GetLevel(World world, string level)
+        {
+            foreach (var l in world.Levels)
+            {
+                if (l.Name == level)
+                    return l;
+            }
+            return null;
         }
 
         #endregion Bool
@@ -150,13 +163,21 @@ namespace Controller
             if (OpenWords == null || OpenWords.Count == 0)
             {
                 OpenWords = new List<World>();
-                OpenWords.Add(new World { Name = "First", Levels = new List<Level> { new Level("W1L1"), } });
+                World w = new World(LevelPackage.GameWorlds[0]);
+                OpenWords.Add(w);
             }
 
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            try
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(fs, OpenWords);
+                using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, OpenWords);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorController.Instance.Send(this, ex.Message);
             }
         }
 
@@ -184,6 +205,9 @@ namespace Controller
                 OpenWords = null;
                 SaveProgress();
             }
+
+            if (OnLevelsChanged != null)
+                OnLevelsChanged.Invoke();
         }
 
         public void Reset()
@@ -199,31 +223,76 @@ namespace Controller
     }
 
     [Serializable]
-    public struct World
+    public class World
     {
         public string Name;
+
+        public int RequireFlash;
         public List<Level> Levels;
+        public int Cost;
+
         public int Count { get { return Levels.Count; } }
 
-        public World(string name)
+        public int Flash
         {
-            Name = name;
+            get
+            {
+                int i = 0;
+                foreach (var l in Levels)
+                    i += (int)l.Flash;
+                return i;
+            }
+        }
+
+        public World(World w)
+        {
+            Name = w.Name;
+
+            RequireFlash = w.RequireFlash;
+            Cost = w.Cost;
             Levels = new List<Level>();
+            Levels.Add(new Level(w.Levels[0]));
+        }
+
+        public World()
+        {
+        }
+
+        public void Reset()
+        {
+            var l = Levels[0];
+            l.Reset();
+            Levels = new List<Level>() { l };
         }
     }
 
     [Serializable]
-    public struct Level
+    public class Level
     {
         public string Name;
-        public int Seconds;
-        public int Rate;
+        public string LevelName;
+        public int Cost;
+        public int[] Times;
+        public FlashRate Flash = FlashRate.Zero;
 
-        public Level(string name)
+        public Level(Level l)
         {
-            Name = name;
-            Seconds = 0;
-            Rate = 0;
+            Name = l.Name;
+            LevelName = l.LevelName;
+            Cost = l.Cost;
+            Times = (int[])l.Times.Clone();
+            Flash = l.Flash;
+        }
+
+        public Level()
+        {
+        }
+
+        public void Reset()
+        {
+            Flash = FlashRate.Zero;
         }
     }
+
+    public enum FlashRate { Zero = 0, One, Two, Three };
 }

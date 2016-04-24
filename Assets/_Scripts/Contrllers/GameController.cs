@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Game;
+using Game.UI;
+using GameUI;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Controller
@@ -51,6 +54,8 @@ namespace Controller
 
         #endregion Events
 
+        public const string PLAYER_ASSET = "Prefabs/Game/Player/Player";
+
         private readonly List<string> _nonGameLevels = new List<string> { "Menu", "Loading" };
         private GameObject FinishUI;
 
@@ -74,6 +79,16 @@ namespace Controller
                 Time.timeScale = 0;
             else
                 Time.timeScale = 1;
+        }
+
+        public void RestartLevel()
+        {
+            if (MarketController.Instance.MinusEnergy())
+            {
+                SceneController.Instance.ReloadLevel(true);
+            }
+            else
+                AndroidNativeFunctions.ShowToast("Energy");
         }
 
         #region Player
@@ -100,9 +115,6 @@ namespace Controller
         {
             if (OnLevelFinished != null)
                 OnLevelFinished.Invoke();
-
-            FinishUI.SetActive(true);
-            PauseGame();
         }
 
         #endregion Player
@@ -110,9 +122,18 @@ namespace Controller
         private void OnLevelWasLoaded(int i)
         {
             Time.timeScale = 1;
-            FinishUI = GameObject.FindGameObjectWithTag("UIFinish");
-            if (FinishUI)
-                FinishUI.SetActive(false);
+
+            if (!_nonGameLevels.Contains(SceneController.Instance.GetSceneName()))
+            {
+                var player = FindObjectOfType<PlayerController>();
+                if (!player)
+                {
+                    GameObject go = Instantiate(Resources.Load<GameObject>(PLAYER_ASSET));
+                    player = go.GetComponentInChildren<PlayerController>();
+                }
+
+                FindObjectOfType<PlayerUIManager>().Init(player);
+            }
         }
     }
 }

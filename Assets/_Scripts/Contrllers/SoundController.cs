@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Controller
 {
@@ -35,6 +36,7 @@ namespace Controller
         public AudioSource MusicSource;                 //Drag a reference to the audio source which will play the music.
         public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
         public float highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
+        public AudioMixer Mixer;
 
         private void Awake()
         {
@@ -43,33 +45,13 @@ namespace Controller
             ConfigController.Instance.OnConfigSave += CheckMusic;
         }
 
-        private void CheckMusic()
+        public void CheckMusic()
         {
-            MusicSource.mute = ConfigController.Instance.Config.Backgroud == "1" ? false : true;
-            EfxSource.mute = ConfigController.Instance.Config.Sfx == "1" ? false : true;
-        }
+            float back = ConfigController.Instance.Config.Backgroud == "1" ? 0f : -80f;
+            float sfx = ConfigController.Instance.Config.Sfx == "1" ? 0f : -80f;
 
-        public void PlaySingle(AudioClip clip, bool rand = false)
-        {
-            float pitch = 1f;
-            if (rand)
-                pitch = Random.Range(lowPitchRange, highPitchRange);
-
-            EfxSource.clip = clip;
-            EfxSource.pitch = pitch;
-
-            EfxSource.Play();
-        }
-
-        public void RandomizeSfx(params AudioClip[] clips)
-        {
-            int randomIndex = Random.Range(0, clips.Length);
-            float randomPitch = Random.Range(lowPitchRange, highPitchRange);
-
-            EfxSource.clip = clips[randomIndex];
-            EfxSource.pitch = randomPitch;
-
-            EfxSource.Play();
+            Mixer.SetFloat("Back", back);
+            Mixer.SetFloat("Sfx", sfx);
         }
     }
 }
