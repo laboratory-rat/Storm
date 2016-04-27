@@ -53,6 +53,7 @@ namespace Game
         private AudioSource _audio;
         private int _sleep = 0;
         private List<GameObject> _collisions = new List<GameObject>();
+        private List<GameObject> _wallCollisions = new List<GameObject>();
         private MoveDirection _currentDirection = MoveDirection.None;
         private MoveDirection _lastDirection = MoveDirection.Right;
         private float _zAccel = 0f;
@@ -97,9 +98,14 @@ namespace Game
                     _audio.clip = SoundAlive;
                     _audio.Play();
                     _mesh.enabled = true;
+
+                    _collisions.Clear();
+                    _wallCollisions.Clear();
+
+                    GameController.Instance.PlayerAlive();
                 }
-                else
-                    return;
+
+                return;
             }
 
             if (_sleep > 0)
@@ -108,10 +114,11 @@ namespace Game
             _rb.AddForce(GetGrav());
             Anim.SetBool("Ground", IsGrounded);
 
-            if (_currentDirection != MoveDirection.None)
+            if (_currentDirection != MoveDirection.None && _wallCollisions.Count == 0)
             {
                 var speed = _currentDirection == MoveDirection.Left ? -Speed : Speed;
-                _rb.velocity = GetMoveVector(speed);
+                //_rb.velocity = GetMoveVector(speed);
+                transform.Translate(GetMoveVector(speed) * Time.deltaTime);
                 Anim.SetBool("Run", true);
             }
             else
@@ -143,9 +150,6 @@ namespace Game
 
             if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.3f)
             {
-                if (GameController.Instance != null)
-                    GameController.Instance.PlayerRotate();
-
                 _audio.clip = SoundRotate;
                 _audio.Play();
                 Anim.SetTrigger("Rotate");
@@ -183,9 +187,7 @@ namespace Game
 
             if (md != MoveDirection.None && md != _lastDirection)
             {
-                //Armature.Rotate(Vector3.forward, 180f, Space.Self);
-                //Armature.localRotation = new Quaternion(Armature.localRotation.x, Armature.localRotation.y + 180, Armature.localRotation.z, Armature.localRotation.w);
-                //var e = new Quaternion(Armature.rotation.x, Armature.rotation.y + 180, Armature.rotation.z, Armature.rotation.w);
+                _wallCollisions.Clear();
                 Armature.Rotate(Vector3.up, 180f, Space.Self);
                 _lastDirection = md;
             }
@@ -204,7 +206,7 @@ namespace Game
             }
         }
 
-        private void Rotate()
+        public void Rotate()
         {
             switch (GVector)
             {
@@ -245,6 +247,9 @@ namespace Game
             if (md == GVector)
                 return;
 
+            if (GameController.Instance != null)
+                GameController.Instance.PlayerRotate(md);
+
             switch (GVector)
             {
                 case GravityVector.Down:
@@ -265,11 +270,11 @@ namespace Game
                 case GravityVector.Left:
                     if (md == GravityVector.Down)
                     {
-                        StartCoroutine(Rotation(-90));
+                        StartCoroutine(Rotation(90));
                     }
                     else if (md == GravityVector.Up)
                     {
-                        StartCoroutine(Rotation(90));
+                        StartCoroutine(Rotation(-90));
                     }
                     else
                     {
@@ -299,11 +304,11 @@ namespace Game
                     }
                     else if (md == GravityVector.Up)
                     {
-                        StartCoroutine(Rotation(-90));
+                        StartCoroutine(Rotation(90));
                     }
                     else
                     {
-                        StartCoroutine(Rotation(90));
+                        StartCoroutine(Rotation(-90));
                     }
                     break;
 
@@ -355,17 +360,29 @@ namespace Game
         {
             switch (GVector)
             {
+                //case GravityVector.Down:
+                //    return new Vector3(speed, _rb.velocity.y);
+
+                //case GravityVector.Left:
+                //    return new Vector3(_rb.velocity.x, -speed);
+
+                //case GravityVector.Up:
+                //    return new Vector3(-speed, _rb.velocity.y);
+
+                //case GravityVector.Right:
+                //    return new Vector3(_rb.velocity.x, speed);
+
                 case GravityVector.Down:
-                    return new Vector3(speed, _rb.velocity.y);
+                    return new Vector3(speed, 0);
 
                 case GravityVector.Left:
-                    return new Vector3(_rb.velocity.x, -speed);
+                    return new Vector3(0, speed);
 
                 case GravityVector.Up:
-                    return new Vector3(-speed, _rb.velocity.y);
+                    return new Vector3(speed, 0);
 
                 case GravityVector.Right:
-                    return new Vector3(_rb.velocity.x, speed);
+                    return new Vector3(0, speed);
 
                 default:
                     return Vector3.zero;
@@ -420,15 +437,24 @@ namespace Game
 
         private void OnCollisionEnter(Collision col)
         {
+            if (IsDestroyed)
+                return;
+
             var angle = Vector3.Angle(col.contacts[0].normal, GetPlayerVector());
 
-            if (angle <= 30f && !_collisions.Contains(col.gameObject))
+            if (angle <= 25f && !_collisions.Contains(col.gameObject))
+            {
                 _collisions.Add(col.gameObject);
 
-            Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
+                if (_canRotate)
+                {
+                    _canRotate = false;
+                }
+            }
+            else if (!_wallCollisions.Contains(col.gameObject))
+                _wallCollisions.Add(col.gameObject);
 
-            if (_canRotate)
-                _canRotate = false;
+            Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
 
             var p = col.gameObject.GetComponent<_PlatformBase>();
             if (p != null)
@@ -444,6 +470,9 @@ namespace Game
 
         private void OnCollisionStay(Collision col)
         {
+            if (IsDestroyed)
+                return;
+
             var p = col.gameObject.GetComponent<_PlatformBase>();
             if (p != null)
             {
@@ -453,8 +482,13 @@ namespace Game
 
         private void OnCollisionExit(Collision col)
         {
+            if (IsDestroyed)
+                return;
+
             if (_collisions.Contains(col.gameObject))
                 _collisions.Remove(col.gameObject);
+            else if (_wallCollisions.Contains(col.gameObject))
+                _wallCollisions.Remove(col.gameObject);
 
             var p = col.gameObject.GetComponent<_PlatformBase>();
             if (p != null)
@@ -470,6 +504,9 @@ namespace Game
         {
             if (_collisions.Contains(go))
                 _collisions.Remove(go);
+
+            if (_wallCollisions.Contains(go))
+                _wallCollisions.Remove(go);
         }
 
         #endregion Collisions
@@ -478,11 +515,8 @@ namespace Game
 
         public void OnTriggerEnter(Collider col)
         {
-            _TriggerBase tb;
-            if (tb = col.gameObject.GetComponent<_TriggerBase>())
-            {
-                tb.Activate(ActivationType.Enter);
-            }
+            if (IsDestroyed)
+                return;
 
             StateBox sb;
             if (sb = col.GetComponent<StateBox>())
@@ -490,25 +524,38 @@ namespace Game
                 if (sb.Type != StateBoxType.Start)
                     UseStateBox(sb);
             }
+
+            _PlatformBase pb;
+
+            if (pb = col.GetComponent<_PlatformBase>())
+            {
+                pb.TriggerEnter(this);
+            }
         }
 
         public void OnTriggerStay(Collider col)
         {
-            _TriggerBase tb;
+            if (IsDestroyed)
+                return;
 
-            if (tb = col.gameObject.GetComponent<_TriggerBase>())
+            _PlatformBase pb;
+
+            if (pb = col.GetComponent<_PlatformBase>())
             {
-                tb.Activate(ActivationType.Stay);
+                pb.TriggerStay(this);
             }
         }
 
         public void OnTriggerExit(Collider col)
         {
-            _TriggerBase tb;
+            if (IsDestroyed)
+                return;
 
-            if (tb = col.gameObject.GetComponent<_TriggerBase>())
+            _PlatformBase pb;
+
+            if (pb = col.GetComponent<_PlatformBase>())
             {
-                tb.Activate(ActivationType.Exit);
+                pb.TriggerExit(this);
             }
         }
 
@@ -530,7 +577,7 @@ namespace Game
                         _checkPoint = sb;
 
                         if (GameController.Instance != null)
-                            GameController.Instance.CheckBoxTrigger();
+                            GameController.Instance.CheckBoxTrigger(sb.gameObject);
 
                         ApplyStayBox(sb);
                     }
@@ -555,29 +602,19 @@ namespace Game
             var pos = new Vector3(go.transform.position.x, go.transform.position.y, go.transform.position.z);
             ParentTransform.position = pos;
 
-            transform.localPosition = Vector3.zero;//.position = pos;
+            transform.localPosition = Vector3.zero;
 
-            //var q = go.transform.rotation;
             var q = new Quaternion(go.transform.rotation.x, go.transform.rotation.y, go.transform.rotation.z, go.transform.rotation.w);
             ParentTransform.rotation = q;
-
-            //transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
-            //transform.rotation = q;
-
-            //ParentTransform.Rotate(0f, 90f, 0f, Space.World);
-
-            //ParentTransform.Rotate(Vector3.up, 90);
-
-            //transform.localRotation.Set(0f, 270f, 0f, 1f);
-
-            //transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
         private void ApplyStayBox(StateBox sb)
         {
             if (sb.GVector != GVector)
-                Rotate(sb.GVector);
-
+            {
+                GVector = sb.GVector;
+                GameController.Instance.PlayerRotate(GVector);
+            }
             if (sb.ChangeGrav)
                 Gravity = sb.Gravity;
 

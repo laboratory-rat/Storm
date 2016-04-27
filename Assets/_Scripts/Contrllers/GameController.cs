@@ -38,6 +38,12 @@ namespace Controller
 
         public delegate void SimpleVoid();
 
+        public delegate void RotateVoid(GravityVector gv);
+
+        public delegate void PauseVoid(float scale);
+
+        public delegate void GameObjectVoid(GameObject go);
+
         public event SimpleVoid OnPlayerDestroy;
 
         public event SimpleVoid OnLevelStart;
@@ -46,11 +52,13 @@ namespace Controller
 
         public event SimpleVoid OnLevelFinished;
 
-        public event SimpleVoid OnTimescaleChanged;
+        public event PauseVoid OnTimescaleChanged;
 
-        public event SimpleVoid OnCheckBox;
+        public event GameObjectVoid OnCheckBox;
 
-        public event SimpleVoid OnPlayerRotation;
+        public event RotateVoid OnPlayerRotation;
+
+        public event SimpleVoid OnPlayerAlive;
 
         #endregion Events
 
@@ -68,17 +76,12 @@ namespace Controller
         {
         }
 
-        public void PauseGame()
+        public void PauseGame(float scale)
         {
-            var c = Time.timeScale > 0 ? true : false;
+            Time.timeScale = scale;
 
             if (OnTimescaleChanged != null)
-                OnTimescaleChanged.Invoke();
-
-            if (c)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = 1;
+                OnTimescaleChanged.Invoke(scale);
         }
 
         public void RestartLevel()
@@ -99,22 +102,30 @@ namespace Controller
                 OnPlayerDestroy.Invoke();
         }
 
-        public void PlayerRotate()
+        public void PlayerAlive()
         {
-            if (OnPlayerRotation != null)
-                OnPlayerRotation.Invoke();
+            if (OnPlayerAlive != null)
+                OnPlayerAlive.Invoke();
         }
 
-        public void CheckBoxTrigger()
+        public void PlayerRotate(GravityVector newGV)
+        {
+            if (OnPlayerRotation != null)
+                OnPlayerRotation.Invoke(newGV);
+        }
+
+        public void CheckBoxTrigger(GameObject cb)
         {
             if (OnCheckBox != null)
-                OnCheckBox.Invoke();
+                OnCheckBox.Invoke(cb);
         }
 
         public void FinishLevel()
         {
             if (OnLevelFinished != null)
                 OnLevelFinished.Invoke();
+
+            Time.timeScale = 0;
         }
 
         #endregion Player

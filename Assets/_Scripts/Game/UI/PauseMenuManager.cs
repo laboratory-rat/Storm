@@ -31,13 +31,13 @@ namespace Game.UI
         {
             MenuObject.SetActive(true);
             Animator.SetTrigger("Show");
-            GameController.Instance.PauseGame();
+            GameController.Instance.PauseGame(0f);
         }
 
         public void Hide()
         {
             Animator.SetTrigger("Hide");
-            GameController.Instance.PauseGame();
+            GameController.Instance.PauseGame(1f);
         }
 
         public void Restart()

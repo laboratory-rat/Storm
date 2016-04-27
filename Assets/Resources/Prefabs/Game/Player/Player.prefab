@@ -591,6 +591,8 @@ GameObject:
   - 82: {fileID: 8294136}
   - 114: {fileID: 11449552}
   - 136: {fileID: 13611714}
+  - 114: {fileID: 11493036}
+  - 114: {fileID: 11406644}
   m_Layer: 0
   m_Name: Char_complited8
   m_TagString: Untagged
@@ -1035,7 +1037,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 883, y: 559, z: 480}
+  m_LocalPosition: {x: 450, y: 329, z: -533}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424316}
@@ -1147,7 +1149,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.3
   m_Drag: 1
-  m_AngularDrag: 2
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1259,6 +1261,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11406644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e04c878d2815f4c832487ac9cb299f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11449552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1273,15 +1286,15 @@ MonoBehaviour:
   ParentTransform: {fileID: 477550}
   Anim: {fileID: 9593154}
   Armature: {fileID: 487768}
-  Speed: 5
+  Speed: 15
   CanJump: 1
-  JumpPower: 20
+  JumpPower: 25
   Gravity: 9.81
-  SleepTime: 48
+  SleepTime: 24
   CanRotate: 1
   GVector: 0
   DestroyPrefab: {fileID: 152580, guid: 7886c32b907f3e84b83698c0748ee2ab, type: 2}
-  DestroySleep: 5
+  DestroySleep: 2
   SoundJump: {fileID: 8300000, guid: b4fb77fcaf8871b48b0a01fc641d5457, type: 3}
   SoundRotate: {fileID: 8300000, guid: 73bdc5a7c982aaf4c9e640ea780955e4, type: 3}
   SoundDetroy: {fileID: 8300000, guid: eaa384dc24b329f4cb9699f826670145, type: 3}
@@ -1303,6 +1316,20 @@ MonoBehaviour:
   SpleepAccelY: 0.15
   Speed: 2
   TextField: {fileID: 0}
+--- !u!114 &11493036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35ff00ab0e5b7e4ca9b9caacf257297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particles: {fileID: 19806112}
+  BaseColor: {r: 0.46631703, g: 0.86290795, b: 0.9191176, a: 0.178}
+  Command: 
 --- !u!124 &12457844
 Behaviour:
   m_ObjectHideFlags: 1

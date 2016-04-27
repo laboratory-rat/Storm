@@ -11,7 +11,6 @@ namespace Game.Platform
 
     public class _PlatformBase : MonoBehaviour
     {
-        public bool DefaultActive = true;
         public bool IsMoving = false;
 
         protected PlayerController _player;
@@ -19,7 +18,6 @@ namespace Game.Platform
         protected virtual void Start()
         {
             gameObject.tag = "Platform";
-            OnOff(DefaultActive);
 
             GameController gc;
             if (gc = GameController.Instance)
@@ -42,24 +40,16 @@ namespace Game.Platform
         {
         }
 
-        public virtual void TriggerAction()
+        public virtual void TriggerEnter(PlayerController player)
         {
         }
 
-        public virtual void TriggerAction(bool b)
+        public virtual void TriggerStay(PlayerController player)
         {
-            OnOff(b);
         }
 
-        protected virtual void OnOff(bool b)
+        public virtual void TriggerExit(PlayerController player)
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = b;
-            var c = gameObject.GetComponents<Collider>();
-            foreach (var cc in c)
-                cc.enabled = b;
-
-            if (!b && _player)
-                _player.DeleteCollision(gameObject);
         }
     }
 }

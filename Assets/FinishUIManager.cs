@@ -8,7 +8,7 @@ namespace Game.UI
     public class FinishUIManager : MonoBehaviour
     {
         public GameObject FinishObject;
-
+        public Text TimeText;
         public Animator Animator;
         public Image FFlash;
         public Image SFlash;
@@ -36,12 +36,14 @@ namespace Game.UI
         {
             FinishObject.SetActive(true);
 
-            GameController.Instance.PauseGame();
+            GameController.Instance.PauseGame(0f);
 
-            _level = LevelController.Instance.CurrentLevel;
             _world = LevelController.Instance.CurrentWorld;
+            _level = LevelController.Instance.GetLevel(_world, LevelController.Instance.CurrentLevel.Name);
 
             int time = FindObjectOfType<TimerUI>().IntTime;
+
+            TimeText.text = time.ToString();
 
             int t = _level.Times[0];
             int s = _level.Times[1];

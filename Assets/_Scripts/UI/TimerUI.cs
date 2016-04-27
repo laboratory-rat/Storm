@@ -59,12 +59,21 @@ namespace Game.UI
             _tick.Stop();
         }
 
-        private void Pause()
+        private void Pause(float scale)
         {
-            if (Time.timeScale == 1)
+            if (scale == 1f)
                 _tick.Start();
             else
                 _tick.Stop();
+        }
+
+        private void OnDestroy()
+        {
+            if (GameController.Instance != null)
+            {
+                GameController.Instance.OnTimescaleChanged -= Pause;
+                GameController.Instance.OnLevelFinished -= Stop;
+            }
         }
     }
 }
