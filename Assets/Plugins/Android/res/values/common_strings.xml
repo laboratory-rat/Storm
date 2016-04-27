@@ -110,5 +110,4 @@
 
     <!-- Message in confirmation dialog informing the user that the account could not be signed in. [CHAR LIMIT=NONE] -->
     <string name="common_google_play_services_sign_in_failed_text">Error signing in the specified account. Please choose a different account.</string>
-
 </resources>

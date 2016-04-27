@@ -1,5 +1,4 @@
 ﻿using Controller;
-using System.Collections;
 using UnityEngine;
 
 namespace Game.UI

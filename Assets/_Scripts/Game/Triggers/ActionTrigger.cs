@@ -1,6 +1,4 @@
 ﻿using Controller;
-using System.Collections;
-using System.Timers;
 using UnityEngine;
 
 namespace Game.Platform
@@ -89,6 +87,8 @@ namespace Game.Platform
             }
 
             _activated = false;
+
+            UpdateAction(FindObjectOfType<PlayerController>().GVector);
         }
 
         private void UpdateAction(GravityVector gv)
@@ -99,7 +99,12 @@ namespace Game.Platform
                 _active = false;
 
             if (EnableDecoration)
-                Decoration.SetActive(_active);
+            {
+                if (_active)
+                    Decoration.GetComponent<ParticleSystem>().Play();
+                else
+                    Decoration.GetComponent<ParticleSystem>().Pause();
+            }
         }
 
         public override void TriggerEnter(PlayerController player)
@@ -124,12 +129,16 @@ namespace Game.Platform
                 if (EnableObjectAction)
                 {
                     foreach (var go in TargetObjects)
-                        go.SetActive(!OCommand);
+                        go.SetActive(OCommand);
                 }
             }
 
             if (ActiveOnce && !_activated)
+            {
                 _activated = true;
+                if (EnableDecoration)
+                    Decoration.GetComponent<ParticleSystem>().Pause();
+            }
         }
 
         private void OnDestroy()

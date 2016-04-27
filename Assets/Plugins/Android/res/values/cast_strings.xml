@@ -9,5 +9,4 @@
     <string name="cast_notification_connected_message">Connected to <xliff:g id="name">%1$s</xliff:g></string>
     <!-- Label of a button to disconnect an active cast display connection.  [CHAR LIMIT=25] NOTE: Same text as msgid="9024230238785261495" -->
     <string name="cast_notification_disconnect">Disconnect</string>
-
 </resources>

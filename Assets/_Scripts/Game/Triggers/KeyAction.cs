@@ -1,6 +1,4 @@
-﻿using Controller;
-using Game;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game.Platform
 {

@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 8
   m_Name: Start
   m_TagString: Start
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -91,8 +91,12 @@ MonoBehaviour:
   GVector: 0
   ChangeSpeed: 0
   Speed: 0
+  ChangeAllowJump: 0
+  CanJump: 1
   ChangeJumpPower: 0
   JumpPower: 0
+  ChangeAllowRotate: 0
+  CanRotate: 1
   ChangeGrav: 0
   Gravity: 0
   ChangeSleepTime: 0

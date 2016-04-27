@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- Permisions -->
 	<uses-permission android:name="android.permission.INTERNET" /> <!-- Required for AdMod, InApp purchases and Leaderboards -->
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required for AdMod and Leaderboards -->
@@ -22,12 +22,12 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 			<meta-data android:name="android.app.lib_name" android:value="unity" />
-			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true"/>
+			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 		</activity>
 
 		<!-- Smasung IAP -->
-		<activity android:name="com.sec.android.iap.lib.activity.InboxActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
-    <activity android:name="com.sec.android.iap.lib.activity.PaymentActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
-    <activity android:name="com.sec.android.iap.lib.activity.ItemActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
+		<activity android:name="com.sec.android.iap.lib.activity.InboxActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
+    <activity android:name="com.sec.android.iap.lib.activity.PaymentActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
+    <activity android:name="com.sec.android.iap.lib.activity.ItemActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
 	</application>
 </manifest>

@@ -1,6 +1,5 @@
 ﻿using Controller;
 using Game.Platform;
-using Game.Trigger;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -148,7 +147,7 @@ namespace Game
             //    }
             //}
 
-            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.3f)
+            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.5f)
             {
                 _audio.clip = SoundRotate;
                 _audio.Play();

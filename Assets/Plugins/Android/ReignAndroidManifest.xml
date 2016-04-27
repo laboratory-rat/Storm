@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- Permisions -->
 	<uses-permission android:name="android.permission.INTERNET" />
 	<!-- Required for AdMod, InApp purchases and Leaderboards -->
@@ -34,24 +34,24 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 			<meta-data android:name="android.app.lib_name" android:value="unity" />
-			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true"/>
+			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 		</activity>
 
 		<!-- Amazon InAppPurchase receiver -->
-		<receiver android:name = "com.amazon.device.iap.ResponseReceiver" >
+		<receiver android:name = "com.amazon.device.iap.ResponseReceiver">
 			<intent-filter>
-				<action android:name = "com.amazon.inapp.purchasing.NOTIFY" android:permission = "com.amazon.inapp.purchasing.Permission.NOTIFY"/>
+				<action android:name = "com.amazon.inapp.purchasing.NOTIFY" android:permission = "com.amazon.inapp.purchasing.Permission.NOTIFY" />
 			</intent-filter>
 		</receiver>
 
 		<!-- Amazon Ads -->
-		<activity android:name="com.amazon.device.ads.AdActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
+		<activity android:name="com.amazon.device.ads.AdActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 
 		<!-- GooglePlay Services Version -->
-		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
 		<!-- AdMob Activity -->
-		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
 		<!-- GooglePlay Leaderboards and Achievements -->
 		<meta-data android:name="com.google.android.gms.appstate.APP_ID" android:value="\ xxxxxxxxxxxx" />
@@ -80,8 +80,8 @@
 		</receiver>
 
 		<!-- Smasung IAP -->
-		<activity android:name="com.sec.android.iap.lib.activity.InboxActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
-		<activity android:name="com.sec.android.iap.lib.activity.PaymentActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
-		<activity android:name="com.sec.android.iap.lib.activity.ItemActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize"/>
+		<activity android:name="com.sec.android.iap.lib.activity.InboxActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
+		<activity android:name="com.sec.android.iap.lib.activity.PaymentActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
+		<activity android:name="com.sec.android.iap.lib.activity.ItemActivity" android:theme="@style/Theme.Empty" android:configChanges="orientation|screenSize" />
 	</application>
 </manifest>

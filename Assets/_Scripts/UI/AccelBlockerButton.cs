@@ -1,6 +1,4 @@
-﻿using Game;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.UI

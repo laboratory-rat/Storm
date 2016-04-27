@@ -25,7 +25,5 @@
         Whether or not this view should have a circular clip applied
         -->
         <attr name="circleCrop" format="boolean" />
-
     </declare-styleable>
-
 </resources>

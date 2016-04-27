@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using Reign;
+﻿using Reign;
+using UnityEngine;
 
 public class ADController : MonoBehaviour
 {
@@ -32,7 +31,7 @@ public class ADController : MonoBehaviour
 
     private static InterstitialAd ad;
 
-    void Start()
+    private void Start()
     {
         DontDestroyOnLoad(gameObject);
 
@@ -63,7 +62,7 @@ public class ADController : MonoBehaviour
         if (adEvent == InterstitialAdEvents.Cached) ad.Show();
     }
 
-    void OnGUI()
+    private void OnGUI()
     {
         GUI.matrix = Matrix4x4.identity;
         GUI.color = Color.white;

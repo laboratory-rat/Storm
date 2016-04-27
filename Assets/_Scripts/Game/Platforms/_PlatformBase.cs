@@ -1,6 +1,4 @@
 ﻿using Controller;
-using Game;
-using System.Collections;
 using UnityEngine;
 
 namespace Game.Platform

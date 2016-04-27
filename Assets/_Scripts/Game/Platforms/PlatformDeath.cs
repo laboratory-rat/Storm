@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Game.Platform
+﻿namespace Game.Platform
 {
     public class PlatformDeath : _PlatformBase
     {
