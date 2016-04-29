@@ -59,6 +59,10 @@ namespace Controller
 
         public event SimpleVoid OnPlayerAlive;
 
+        public event SimpleVoid OnNewVerion;
+
+        public event SimpleVoid OnFirstEnter;
+
         #endregion Events
 
         public const string PLAYER_ASSET = "Prefabs/Game/Player/Player";
@@ -74,6 +78,24 @@ namespace Controller
         private void Update()
         {
         }
+
+        #region System
+
+        public void FirstEnter()
+        {
+            if (OnFirstEnter != null)
+                OnFirstEnter.Invoke();
+        }
+
+        public void NewVersion()
+        {
+            if (OnNewVerion != null)
+                OnNewVerion.Invoke();
+        }
+
+        #endregion System
+
+        #region Level
 
         public void PauseGame(float scale)
         {
@@ -92,6 +114,8 @@ namespace Controller
             else
                 AndroidNativeFunctions.ShowToast("Energy");
         }
+
+        #endregion Level
 
         #region Player
 

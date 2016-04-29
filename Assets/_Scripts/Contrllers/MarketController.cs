@@ -152,6 +152,12 @@ namespace Controller
                     PMone.LastRest = DateTime.Now;
 
                     Save();
+
+                    //if (PMone.Energy == MaxEnergy && Application.isMobilePlatform)
+                    //{
+                    //    AndroidJavaObject ajc = new AndroidJavaObject("com.zeljkosassets.notifications.Notifier");
+                    //    ajc.CallStatic("sendNotification", "Strom", LocalController.Instance.L("notification", "er_lable"), LocalController.Instance.L("notification", "er_text"), 5);
+                    //}
                 }
             }
         }

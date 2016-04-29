@@ -87,6 +87,8 @@ namespace Controller
             public string Backgroud = "1";
             public string Sfx = "1";
             public string Notification = "1";
+            public string Version = "0";
+            public string FirstEnter = "1";
 
             public ConfigFile()
             {

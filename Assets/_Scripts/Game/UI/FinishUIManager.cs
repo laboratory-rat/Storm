@@ -34,6 +34,11 @@ namespace Game.UI
 
         public void FinishLevel()
         {
+            if (MarketController.Instance.PMone.ShowAD)
+            {
+                FindObjectOfType<AdMobPlugin>().Load();
+            }
+
             FinishObject.SetActive(true);
 
             GameController.Instance.PauseGame(0f);
@@ -79,7 +84,7 @@ namespace Game.UI
         {
             if (GoToMenu)
             {
-                AndroidNativeFunctions.ShowToast("It was last level. Come back later. Bitch!");
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("game_menu", "last_level"));
                 return;
             }
 

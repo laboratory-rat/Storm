@@ -55,6 +55,9 @@ namespace Controller
         {
             path = Application.persistentDataPath + SAVE;
             LoadProgress();
+
+            GameController.Instance.OnFirstEnter += OnFirstEnter;
+            GameController.Instance.OnNewVerion += OnNewVersion;
         }
 
         public void OpenNew(string world, string level)
@@ -154,6 +157,22 @@ namespace Controller
 
         #endregion Bool
 
+        #region System
+
+        private void OnFirstEnter()
+        {
+        }
+
+        private void OnNewVersion()
+        {
+            Reset();
+
+            if (OnLevelsChanged != null)
+                OnLevelsChanged.Invoke();
+        }
+
+        #endregion System
+
         #region Save/Load
 
         public void SaveProgress()
@@ -218,6 +237,12 @@ namespace Controller
         }
 
         #endregion Save/Load
+
+        private void OnDestroy()
+        {
+            GameController.Instance.OnFirstEnter -= OnFirstEnter;
+            GameController.Instance.OnNewVerion -= OnNewVersion;
+        }
     }
 
     [Serializable]

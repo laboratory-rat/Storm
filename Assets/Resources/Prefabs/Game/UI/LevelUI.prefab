@@ -509,6 +509,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &175972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444106}
+  - 114: {fileID: 11486112}
+  - 114: {fileID: 11406490}
+  - 114: {fileID: 11460256}
+  m_Layer: 0
+  m_Name: AdMobPlugin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &177810
 GameObject:
   m_ObjectHideFlags: 1
@@ -613,6 +631,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &444106
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22425668}
+  m_RootOrder: 6
 --- !u!4 &466830
 Transform:
   m_ObjectHideFlags: 1
@@ -793,6 +823,84 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &11406490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36da46230c88f0e44ba41ec202f52749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectangles:
+    loadButton:
+      serializedVersion: 2
+      x: 32
+      y: 32
+      width: 64
+      height: 48
+    exitButton:
+      serializedVersion: 2
+      x: 104
+      y: 32
+      width: 64
+      height: 48
+    showButton:
+      serializedVersion: 2
+      x: 32
+      y: 88
+      width: 64
+      height: 48
+    hideButton:
+      serializedVersion: 2
+      x: 104
+      y: 88
+      width: 64
+      height: 48
+    horizontalPositionButton:
+      serializedVersion: 2
+      x: 176
+      y: 32
+      width: 240
+      height: 48
+    verticalPositionButton:
+      serializedVersion: 2
+      x: 176
+      y: 88
+      width: 240
+      height: 48
+    orientationButton:
+      serializedVersion: 2
+      x: 176
+      y: 144
+      width: 240
+      height: 48
+    genderButton:
+      serializedVersion: 2
+      x: 32
+      y: 144
+      width: 136
+      height: 48
+    sizeButton:
+      serializedVersion: 2
+      x: 176
+      y: 200
+      width: 240
+      height: 50
+    lastErrorRectButton:
+      serializedVersion: 2
+      x: 32
+      y: 256
+      width: 384
+      height: 50
+    receivedLabel:
+      serializedVersion: 2
+      x: 32
+      y: 256
+      width: 384
+      height: 50
 --- !u!114 &11406756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1163,6 +1271,7 @@ MonoBehaviour:
   FFlash: {fileID: 11490150}
   SFlash: {fileID: 11476136}
   TFlash: {fileID: 11436018}
+  GoToMenu: 0
   LastLevelInWorld: 0
   NextWorld: 
   NextLevel: W1L2
@@ -1749,6 +1858,53 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11460256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bcdadf56b0d1e54e906ae9deec40c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeInEditMode: 1
+  style: 0
+  texts:
+  - Bugs that go away by themselves come back by themselves.
+  - When in doubt, use brute force.
+  - Deleted code is debugged code.
+  - Premature optimization is the root of all evil.
+  - Simplicity is the ultimate sophistication.
+  - With diligence it is possible to make anything run slowly.
+  - Simplicity carried to the extreme becomes elegance.
+  - The best is the enemy of the good.
+  - A data structure is just a stupid programming language.
+  - Software gets slower faster than hardware gets faster.
+  - If it doesn't work, it doesn't matter how fast it doesn't work.
+  - If it works, it's obsolete.
+  - The common language of programmers is Profanity.
+  - There is no place like 127.0.0.1.
+  - The code is 100% complete, it just doesn't work yet.
+  - Programming is hard, let's go shopping.
+  icons:
+  - {fileID: 2800000, guid: 42f0fee300d07b347874caf6491a8e1e, type: 3}
+  - {fileID: 2800000, guid: a0eff840123186b4a97e58764a06116a, type: 3}
+  - {fileID: 2800000, guid: 13ac363ff191c2648b2b4adae2553a7e, type: 3}
+  - {fileID: 2800000, guid: fbf551ccd05c60540877234ccbe0f135, type: 3}
+  - {fileID: 2800000, guid: ca76f053bcdffaf4bad67609b6b8c854, type: 3}
+  - {fileID: 2800000, guid: 8e5ce85e4d1b6404d9840eebe6224f77, type: 3}
+  - {fileID: 2800000, guid: 91db7cb3febcec4419d4ab042f0f2f5d, type: 3}
+  - {fileID: 2800000, guid: d502f1730be94304e98d7deeb2736ba8, type: 3}
+  - {fileID: 2800000, guid: 9af03d6d762bd4f4a8e8d9c435989f81, type: 3}
+  - {fileID: 2800000, guid: aa33e0a9e023cdf4b8adabbb7bd8bd23, type: 3}
+  actions:
+  - {fileID: 2800000, guid: 87cb40c70b3249c4896cb0ef2bff4e61, type: 3}
+  - {fileID: 2800000, guid: cf53756917301da499205cef5c050738, type: 3}
+  - {fileID: 2800000, guid: 8dfbace6cba0c764aa4d45617a306291, type: 3}
+  darkBackground: {fileID: 2800000, guid: 5b39f3498b3c64b429ec2741e91a7673, type: 3}
+  lightBackground: {fileID: 2800000, guid: 975975dbb2b2710468aa64f84f24d99e, type: 3}
 --- !u!114 &11464556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2065,6 +2221,42 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11486112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdf14effc102404ab6a46bc6a50a821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publisherId: ca-app-pub-9869209397937230/1317370704
+  isTesting: 0
+  testDeviceIds:
+  - TEST_DEVICE_ID
+  guessSelfDeviceId: 1
+  size: 3
+  orientation: 0
+  horizontalPosition: 0
+  verticalPosition: 1
+  refreshInterval: 30
+  loadOnStart: 0
+  setTargetOnStart: 0
+  loadOnReconfigure: 1
+  target:
+    gender: 0
+    birthday:
+      year: 0
+      month: 0
+      day: 0
+    keywords: []
+    location:
+      latitude: NaN
+      longitude: NaN
+      altitude: NaN
+  Auto: 0
 --- !u!114 &11486424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2956,6 +3148,7 @@ RectTransform:
   - {fileID: 22433054}
   - {fileID: 22420586}
   - {fileID: 466830}
+  - {fileID: 444106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}

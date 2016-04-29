@@ -1,4 +1,15 @@
 <Local>
+  <area id="news">
+    <element id="splash">
+      Current version is {VERSION}
+      ------------------------------
+      -- New levels
+      -- New tools
+    </element>
+    <element id="new">
+      Hello. Velcome in Strom.
+    </element>
+  </area>
   <area id="langs">
     <element id="english">English</element>
     <element id="russian">Russian</element>
@@ -9,7 +20,14 @@
     <element id="info">Info</element>
     <element id="back">Back</element>
   </area>
+  <area id="game_menu">
+    <element id="last_level">Sorry, it was the last level. Please, come back later.</element>
+  </area>
   <area id="errors">
     <element id="button2">Hello2</element>
+  </area>
+  <area id="notification">
+    <element id="er_lable">Energy restored!</element>
+    <element id="er_text">Go fuck your self!</element>
   </area>
 </Local>

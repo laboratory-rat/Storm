@@ -100,10 +100,7 @@ namespace Game.Platform
 
             if (EnableDecoration)
             {
-                if (_active)
-                    Decoration.GetComponent<ParticleSystem>().Play();
-                else
-                    Decoration.GetComponent<ParticleSystem>().Pause();
+                ChangeEmittion(_active);
             }
         }
 
@@ -137,8 +134,18 @@ namespace Game.Platform
             {
                 _activated = true;
                 if (EnableDecoration)
-                    Decoration.GetComponent<ParticleSystem>().Pause();
+                    ChangeEmittion(false);
             }
+        }
+
+        private void ChangeEmittion(bool state)
+        {
+            var e = Decoration.GetComponent<ParticleSystem>().emission;
+
+            if (state)
+                e.enabled = true;
+            else
+                e.enabled = false;
         }
 
         private void OnDestroy()
