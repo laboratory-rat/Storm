@@ -121,6 +121,7 @@ namespace Controller
 
         public void PlayerDestroy()
         {
+            //MarketController.Instance.MinusEnergy(1);
             if (OnPlayerDestroy != null)
                 OnPlayerDestroy.Invoke();
         }

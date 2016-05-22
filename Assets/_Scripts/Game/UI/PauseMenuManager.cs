@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using admob;
+using Controller;
 using UnityEngine;
 
 namespace Game.UI
@@ -31,6 +32,18 @@ namespace Game.UI
             MenuObject.SetActive(true);
             Animator.SetTrigger("Show");
             GameController.Instance.PauseGame(0f);
+
+            if (MarketController.Instance.PMone.ShowAD && Application.isMobilePlatform)
+            {
+                Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7043369900", "ca-app-pub-9869209397937230/7043369900");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
+                Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.MIDDLE_RIGHT, 0);
+                SceneController.Instance.OnSceneChanged += CloseAd;
+            }
+        }
+
+        private void CloseAd()
+        {
+            Admob.Instance().removeBanner();
         }
 
         public void Hide()

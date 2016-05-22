@@ -147,7 +147,7 @@ namespace Game
             //    }
             //}
 
-            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.z - _zAccel) >= 0.5f)
+            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.normalized.z - _zAccel) >= 0.3f)
             {
                 _audio.clip = SoundRotate;
                 _audio.Play();
@@ -169,6 +169,9 @@ namespace Game
             _audio.Play();
             _lastDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
             _mesh.enabled = false;
+
+            if (ParentTransform.parent != null)
+                ParentTransform.SetParent(null);
         }
 
         #region Move
@@ -201,7 +204,7 @@ namespace Game
                 Anim.SetTrigger("Jump");
                 _audio.clip = SoundJump;
                 _audio.Play();
-                _zAccel = Input.acceleration.z;
+                _zAccel = Input.acceleration.normalized.z;
             }
         }
 
@@ -316,6 +319,7 @@ namespace Game
             }
             GVector = md;
             _sleep += SleepTime;
+            _currentDirection = MoveDirection.None;
         }
 
         private IEnumerator Rotation(float angle)
@@ -375,13 +379,13 @@ namespace Game
                     return new Vector3(speed, 0);
 
                 case GravityVector.Left:
-                    return new Vector3(0, speed);
+                    return new Vector3(speed, 0);
 
                 case GravityVector.Up:
                     return new Vector3(speed, 0);
 
                 case GravityVector.Right:
-                    return new Vector3(0, speed);
+                    return new Vector3(speed, 0);
 
                 default:
                     return Vector3.zero;

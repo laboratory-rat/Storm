@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using admob;
+using Controller;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,9 +35,11 @@ namespace Game.UI
 
         public void FinishLevel()
         {
-            if (MarketController.Instance.PMone.ShowAD)
+            if (MarketController.Instance.PMone.ShowAD && Application.isMobilePlatform)
             {
-                FindObjectOfType<AdMobPlugin>().Load();
+                Admob.Instance().initAdmob("ca-app-pub-9869209397937230/5747570306", "ca-app-pub-9869209397937230/5747570306");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
+                Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.TOP_CENTER, 0);
+                SceneController.Instance.OnSceneChanged += CloseAd;
             }
 
             FinishObject.SetActive(true);
@@ -47,6 +50,9 @@ namespace Game.UI
             _level = LevelController.Instance.GetLevel(_world, LevelController.Instance.CurrentLevel.Name);
 
             int time = FindObjectOfType<TimerUI>().IntTime;
+
+            if (_level.BestTime > time || _level.BestTime == -1)
+                _level.BestTime = time;
 
             TimeText.text = time.ToString();
 
@@ -94,16 +100,9 @@ namespace Game.UI
             var l = LevelController.Instance.GetLevelByScene(_world, NextLevel);
             if (l != null)
             {
-                if (MarketController.Instance.MinusEnergy())
-                {
-                    LevelController.Instance.CurrentLevel = l;
-                    LevelController.Instance.CurrentWorld = _world;
-                    SceneController.Instance.ChangeScene(l.LevelName, UnityEngine.SceneManagement.LoadSceneMode.Single);
-                }
-                else
-                {
-                    AndroidNativeFunctions.ShowToast("Energy");
-                }
+                LevelController.Instance.CurrentLevel = l;
+                LevelController.Instance.CurrentWorld = _world;
+                SceneController.Instance.ChangeScene(l.LevelName, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
         }
 
@@ -117,6 +116,12 @@ namespace Game.UI
             LevelController.Instance.CurrentLevel = null;
             LevelController.Instance.CurrentWorld = "";
             SceneController.Instance.ChangeScene(SceneController.MENU, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
+
+        private void CloseAd()
+        {
+            Admob.Instance().removeBanner();
+            SceneController.Instance.OnSceneChanged -= CloseAd;
         }
     }
 }

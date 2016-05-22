@@ -1,5 +1,8 @@
 fileFormatVersion: 2
 guid: 0633842b2634cbc4fbd691fd8a20f5fb
+labels:
+- Scene
+- Menu
 timeCreated: 1459361124
 licenseType: Free
 DefaultImporter:

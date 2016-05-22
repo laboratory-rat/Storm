@@ -1,0 +1,240 @@
+fileFormatVersion: 2
+guid: 54cc514e21c3c5a48b90890e75a47e89
+timeCreated: 1463136175
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base
+    100002: BL
+    100004: BR
+    100006: SL
+    100008: Sphere
+    100010: SR
+    100012: //RootNode
+    400000: Base
+    400002: BL
+    400004: BR
+    400006: SL
+    400008: Sphere
+    400010: SR
+    400012: //RootNode
+    2300000: Base
+    2300002: BL
+    2300004: BR
+    2300006: SL
+    2300008: Sphere
+    2300010: SR
+    3300000: Base
+    3300002: BL
+    3300004: BR
+    3300006: SL
+    3300008: Sphere
+    3300010: SR
+    4300000: BL
+    4300002: BR
+    4300004: SL
+    4300006: SR
+    4300008: Base
+    4300010: Sphere
+    7400000: Trigger|BaseAction
+    7400002: Trigger|BLAction
+    7400004: Trigger|BRAction
+    7400006: Trigger|SLAction
+    7400008: Trigger|SphereAction
+    7400010: Trigger|SRAction
+    7400012: Trigger|TriggerAction
+    7400014: BL|BaseAction
+    7400016: BL|BLAction
+    7400018: BL|BRAction
+    7400020: BL|SLAction
+    7400022: BL|SphereAction
+    7400024: BL|SRAction
+    7400026: BL|TriggerAction
+    7400028: BR|BaseAction
+    7400030: BR|BLAction
+    7400032: BR|BRAction
+    7400034: BR|SLAction
+    7400036: BR|SphereAction
+    7400038: BR|SRAction
+    7400040: BR|TriggerAction
+    7400042: SL|BaseAction
+    7400044: SL|BLAction
+    7400046: SL|BRAction
+    7400048: SL|SLAction
+    7400050: SL|SphereAction
+    7400052: SL|SRAction
+    7400054: SL|TriggerAction
+    7400056: SR|BaseAction
+    7400058: SR|BLAction
+    7400060: SR|BRAction
+    7400062: SR|SLAction
+    7400064: SR|SphereAction
+    7400066: SR|SRAction
+    7400068: SR|TriggerAction
+    7400070: Base|BaseAction
+    7400072: Base|BLAction
+    7400074: Base|BRAction
+    7400076: Base|SLAction
+    7400078: Base|SphereAction
+    7400080: Base|SRAction
+    7400082: Base|TriggerAction
+    7400084: Sphere|BaseAction
+    7400086: Sphere|BLAction
+    7400088: Sphere|BRAction
+    7400090: Sphere|SLAction
+    7400092: Sphere|SphereAction
+    7400094: Sphere|SRAction
+    7400096: Sphere|TriggerAction
+    7400098: Prepare
+    7400100: Rotation
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Prepare
+      takeName: Scene
+      firstFrame: 1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base
+        weight: 1
+      - path: BL
+        weight: 1
+      - path: BR
+        weight: 1
+      - path: SL
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: SR
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Rotation
+      takeName: Scene
+      firstFrame: 26
+      lastFrame: 49.92
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base
+        weight: 1
+      - path: BL
+        weight: 1
+      - path: BR
+        weight: 1
+      - path: SL
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: SR
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

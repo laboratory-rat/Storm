@@ -14,19 +14,37 @@ public class PreloaderScript : MonoBehaviour
     public Text AlarmText;
 
     private bool _requireDownload = false;
+    private bool _active = false;
 
     private void log(string t)
     {
-        LogText.text += t + "\n";
+        return;
+        //LogText.text += t + "\n";
     }
 
     private void Start()
+    {
+        StartCoroutine(W());
+    }
+
+    private IEnumerator W()
+    {
+        log("Splash");
+        yield return new WaitForSeconds(3f);
+        log("End splash");
+        _active = true;
+        LoadGame();
+    }
+
+    private void LoadGame()
     {
         if (!GooglePlayDownloader.RunningOnAndroid())
         {
             AlarmText.text = "Use GooglePlayDownloader only on Android device!";
             return;
         }
+
+        log("Loading started");
 
         expPath = GooglePlayDownloader.GetExpansionFilePath();
         if (expPath == null)
@@ -43,9 +61,11 @@ public class PreloaderScript : MonoBehaviour
             log("Main = " + mainPath.Substring(expPath.Length));
 
             if (mainPath != null)
+            {
+                log("Main path != null");
                 StartCoroutine(loadLevel());
-
-            if (mainPath == null)
+            }
+            else
             {
                 AlarmText.text = "The game needs to download game content. It's recommanded to use WIFI connection.";
                 _requireDownload = true;
@@ -55,6 +75,9 @@ public class PreloaderScript : MonoBehaviour
 
     private void Update()
     {
+        if (!_active)
+            return;
+
         if (_requireDownload)
         {
             GooglePlayDownloader.FetchOBB();
@@ -65,17 +88,23 @@ public class PreloaderScript : MonoBehaviour
 
     protected IEnumerator loadLevel()
     {
+        log("loadLevel function");
+
         string mainPath;
         do
         {
+            log("-- first do-while");
             yield return new WaitForSeconds(0.5f);
             mainPath = GooglePlayDownloader.GetMainOBBPath(expPath);
             log("waiting mainPath " + mainPath);
         }
         while (mainPath == null);
 
+        log("end do-whle");
+
         if (downloadStarted == false)
         {
+            log("downloadStarted == false");
             downloadStarted = true;
 
             string uri = "file://" + mainPath;
@@ -83,7 +112,10 @@ public class PreloaderScript : MonoBehaviour
             WWW www = WWW.LoadFromCacheOrDownload(uri, 0);
 
             // Wait for download to complete
+
+            log("downloading......");
             yield return www;
+            log("downloaded");
 
             if (www.error != null)
             {
@@ -91,6 +123,7 @@ public class PreloaderScript : MonoBehaviour
             }
             else
             {
+                log("Success");
                 SceneManager.LoadScene("Menu");
             }
         }

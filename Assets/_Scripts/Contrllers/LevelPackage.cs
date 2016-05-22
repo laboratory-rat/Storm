@@ -17,7 +17,6 @@ namespace Controller
                     {
                         Name = "1",
                         LevelName = "W1L1",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -26,7 +25,6 @@ namespace Controller
                     {
                         Name = "2",
                         LevelName = "W1L2",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -35,7 +33,6 @@ namespace Controller
                     {
                         Name = "3",
                         LevelName = "W1L3",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -44,7 +41,6 @@ namespace Controller
                     {
                         Name = "4",
                         LevelName = "W1L4",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -53,7 +49,6 @@ namespace Controller
                     {
                         Name = "5",
                         LevelName = "W1L5",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -62,7 +57,6 @@ namespace Controller
                     {
                         Name = "6",
                         LevelName = "W1L6",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -71,7 +65,6 @@ namespace Controller
                     {
                         Name = "7",
                         LevelName = "W1L7",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -80,7 +73,6 @@ namespace Controller
                     {
                         Name = "8",
                         LevelName = "W1L8",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -89,7 +81,6 @@ namespace Controller
                     {
                         Name = "9",
                         LevelName = "W1L9",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -98,7 +89,6 @@ namespace Controller
                     {
                         Name = "10",
                         LevelName = "W1L10",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -116,7 +106,6 @@ namespace Controller
                     {
                         Name = "1",
                         LevelName = "W2L1",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -125,7 +114,6 @@ namespace Controller
                     {
                         Name = "2",
                         LevelName = "W2L2",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -134,7 +122,6 @@ namespace Controller
                     {
                         Name = "3",
                         LevelName = "W2L3",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -143,7 +130,6 @@ namespace Controller
                     {
                         Name = "4",
                         LevelName = "W2L4",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -152,7 +138,6 @@ namespace Controller
                     {
                         Name = "5",
                         LevelName = "W2L5",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -161,7 +146,6 @@ namespace Controller
                     {
                         Name = "6",
                         LevelName = "W2L6",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -170,7 +154,6 @@ namespace Controller
                     {
                         Name = "7",
                         LevelName = "W2L7",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -179,7 +162,6 @@ namespace Controller
                     {
                         Name = "8",
                         LevelName = "W2L8",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -188,7 +170,6 @@ namespace Controller
                     {
                         Name = "9",
                         LevelName = "W2L9",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
@@ -197,7 +178,6 @@ namespace Controller
                     {
                         Name = "10",
                         LevelName = "W2L10",
-                        Cost = 1,
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },

@@ -8,23 +8,32 @@ namespace Game.Platform
         public GameObject TargetObject;
         public bool Action;
 
+        private bool _active = true;
+        private Animator _anim;
+
         protected override void Start()
         {
             base.Start();
             TargetObject.SetActive(!Action);
+            _anim = GetComponent<Animator>();
         }
 
         public override void TriggerEnter(PlayerController player)
         {
             base.TriggerEnter(player);
 
+            if (!_active)
+                return;
+
             KeyController kc;
             if (kc = player.GetComponent<KeyController>())
             {
                 if (kc.Command == RequiredCommand)
                 {
-                    kc.Reset();
+                    kc.Success();
                     TargetObject.SetActive(Action);
+                    _active = false;
+                    _anim.SetTrigger("Activate");
                 }
             }
         }

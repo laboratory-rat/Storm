@@ -46,14 +46,13 @@ namespace UI
             _level = l == null ? level : l;
 
             IndexText.text = index;
-            //CostText.text = "Cost: " + _level.Cost;
 
             OnEnable();
         }
 
         private void OnClick()
         {
-            if (MarketController.Instance.MinusEnergy(_level.Cost))
+            if (MarketController.Instance.PMone.Energy > 0)
             {
                 LevelController.Instance.CurrentLevel = _level;
                 LevelController.Instance.CurrentWorld = _world;
@@ -79,14 +78,12 @@ namespace UI
                     SpriteState ss = new SpriteState();
                     ss.disabledSprite = Block;
                     ss.pressedSprite = BlockOn;
-                    //BackFlash.enabled = false;
 
                     _button.spriteState = ss;
                 }
                 else
                 {
                     _button.onClick.AddListener(() => OnClick());
-                    //BackFlash.enabled = true;
 
                     switch (_level.Flash)
                     {

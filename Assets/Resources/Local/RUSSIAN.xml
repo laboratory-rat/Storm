@@ -1,15 +1,30 @@
 <Local>
+  <area id="news">
+    <element id="splash">
+      Так, изменена анимация подсказок. Добавлен экран.
+    </element>
+    <element id="new">
+      Тут еще мало чего интересного.
+    </element>
+  </area>
   <area id="langs">
-    <element id="english">РђРЅРіР»РёР№СЃРєРёР№</element>
-    <element id="russian">Р СѓСЃСЃРєРёР№</element>
+    <element id="english">English</element>
+    <element id="russian">Russian</element>
   </area>
   <area id="main_menu">
-    <element id="levels">РЈСЂРѕРІРЅРё</element>
-    <element id="options">РќР°СЃС‚СЂРѕР№РєРё</element>
-    <element id="info">РРЅС„РѕСЂРјР°С†РёСЏ</element>
-    <element id="back">РќР°Р·Р°Рґ</element>
+    <element id="levels">Levels</element>
+    <element id="options">Options</element>
+    <element id="info">Info</element>
+    <element id="back">Back</element>
+  </area>
+  <area id="game_menu">
+    <element id="last_level">Sorry, it was the last level. Please, come back later.</element>
   </area>
   <area id="errors">
     <element id="button2">Hello2</element>
+  </area>
+  <area id="notification">
+    <element id="er_lable">Energy restored!</element>
+    <element id="er_text">Go fuck your self!</element>
   </area>
 </Local>

@@ -23,6 +23,7 @@ namespace UI
                 GameObject newLevel = (GameObject)Instantiate(LevelPrefab, Parent.position, Parent.rotation);
                 newLevel.GetComponent<LevelButton>().Init(worldName, level, (i + 1).ToString());
                 newLevel.transform.SetParent(Parent);
+                newLevel.GetComponent<RectTransform>().localScale = Vector3.one;
                 _current.Add(newLevel);
             }
 

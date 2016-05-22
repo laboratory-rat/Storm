@@ -1,4 +1,5 @@
-﻿using System;
+﻿using admob;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -32,6 +33,9 @@ namespace Controller
         }
 
         #endregion Instance
+
+        private const int COST_5 = 10;
+        private const int COST_FULL = 100;
 
         public delegate void SimpleVoid();
 
@@ -75,6 +79,44 @@ namespace Controller
 
                 Save();
             }
+
+            GameController.Instance.OnPlayerDestroy += MinusEnergyOnDestroy;
+        }
+
+        private void OnDestroy()
+        {
+            GameController.Instance.OnPlayerDestroy -= MinusEnergyOnDestroy;
+        }
+
+        private void MinusEnergyOnDestroy()
+        {
+            MinusEnergy();
+        }
+
+        public void ShowRewardMessage()
+        {
+            Admob.Instance().loadRewardedVideo("ca-app-pub-9869209397937230/3019809509");
+        }
+
+        private System.Collections.IEnumerator WaitForReward()
+        {
+            int max = 240;
+            while (!Admob.Instance().isRewardedVideoReady() && max > 0)
+            {
+                max--;
+                yield return new WaitForFixedUpdate();
+            }
+
+            if (max > 0)
+            {
+                Admob.Instance().showRewardedVideo();
+                Admob.Instance().rewardedVideoEventHandler += RevardViderAdd;
+            }
+        }
+
+        private void RevardViderAdd(string eventName, string msg)
+        {
+            AddEnergy(2);
         }
 
         public bool MinusEnergy()
@@ -101,13 +143,32 @@ namespace Controller
 
         public void AddEnergy(int i)
         {
-            if (PMone.DoubleEnergy && PMone.Energy < Portmone.MAX_ENERGY || !PMone.DoubleEnergy && PMone.Energy < Portmone.MAX_ENERGY)
-            {
-                int x = Mathf.Min(i + PMone.Energy, Portmone.MAX_ENERGY);
-                PMone.Energy = x;
+            int x = Mathf.Min(i + PMone.Energy, Portmone.MAX_ENERGY);
+            PMone.Energy = x;
 
-                Save();
+            Save();
+        }
+
+        public bool Byu5ForBattery()
+        {
+            if (MinusMoney(COST_5))
+            {
+                AddEnergy(5);
+                return true;
             }
+
+            return false;
+        }
+
+        public bool ByuFullForBattery()
+        {
+            if (MinusMoney(COST_FULL))
+            {
+                AddEnergy(MaxEnergy);
+                return true;
+            }
+
+            return false;
         }
 
         public bool MinusMoney(int i)
@@ -160,6 +221,10 @@ namespace Controller
                     //}
                 }
             }
+            else
+            {
+                PMone.LastRest = DateTime.Now;
+            }
         }
 
         private void Save()
@@ -183,7 +248,7 @@ namespace Controller
         public const string FILE = "/pmp.bin";
 
         public const int REST_SECONDS = 600;
-        public const int MAX_ENERGY = 10;
+        public const int MAX_ENERGY = 30;
 
         public int Energy;
         public bool DoubleEnergy = false;

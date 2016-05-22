@@ -159,14 +159,35 @@ namespace Controller
 
         #region System
 
+        public int GetFullScore()
+        {
+            int i = 0;
+
+            foreach (var w in LevelPackage.GameWorlds)
+            {
+                foreach (var l in w.Levels)
+                {
+                    Level ll;
+                    if ((ll = GetLevel(w.Name, l.Name)) != null)
+                    {
+                        if (ll.BestTime != -1)
+                        {
+                            int ii = ll.Times[1] - ll.BestTime;
+                            i += (ii >= 0) ? ii : 0;
+                        }
+                    }
+                }
+            }
+
+            return i;
+        }
+
         private void OnFirstEnter()
         {
         }
 
         private void OnNewVersion()
         {
-            Reset();
-
             if (OnLevelsChanged != null)
                 OnLevelsChanged.Invoke();
         }
@@ -294,15 +315,14 @@ namespace Controller
     {
         public string Name;
         public string LevelName;
-        public int Cost;
         public int[] Times;
+        public int BestTime = -1;
         public FlashRate Flash = FlashRate.Zero;
 
         public Level(Level l)
         {
             Name = l.Name;
             LevelName = l.LevelName;
-            Cost = l.Cost;
             Times = (int[])l.Times.Clone();
             Flash = l.Flash;
         }
