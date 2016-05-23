@@ -370,14 +370,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11423160, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: GoToMenu
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11423160, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
-      propertyPath: NextLevel
-      value: W1L5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e7409f23813e04f84cafc8e3601c76, type: 2}
   m_IsPrefabParent: 0

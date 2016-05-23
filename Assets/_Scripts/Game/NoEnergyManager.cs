@@ -1,4 +1,5 @@
-﻿using Controller;
+﻿using admob;
+using Controller;
 using System.Collections;
 using UnityEngine;
 
@@ -60,9 +61,27 @@ namespace Game.UI
             }
         }
 
+        private bool rev = false;
+
         public void AddTwo()
         {
-            MarketController.Instance.ShowRewardMessage();
+            Admob.Instance().initAdmob("ca-app-pub-9869209397937230/5747570306", "ca-app-pub-9869209397937230/5747570306");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
+            Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.MIDDLE_CENTER, 0);
+            Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
+            rev = true;
+
+            //SceneController.Instance.OnSceneChanged += CloseAd;
+        }
+
+        private void NoEnergyManager_bannerEventHandler(string eventName, string msg)
+        {
+            if (eventName == AdmobEvent.onAdClosed)
+            {
+                MarketController.Instance.AddEnergy(1);
+            }
+
+            rev = false;
+            Admob.Instance().bannerEventHandler -= NoEnergyManager_bannerEventHandler;
         }
 
         public void Menu()
@@ -72,6 +91,9 @@ namespace Game.UI
 
         private void OnDestroy()
         {
+            if (rev)
+                Admob.Instance().bannerEventHandler -= NoEnergyManager_bannerEventHandler;
+
             MarketController.Instance.OnEnergyChanged -= OnEnergy;
         }
     }

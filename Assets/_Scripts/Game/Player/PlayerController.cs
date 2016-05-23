@@ -98,6 +98,8 @@ namespace Game
                     _audio.Play();
                     _mesh.enabled = true;
 
+                    GetComponentInChildren<Collider>().enabled = true;
+
                     _collisions.Clear();
                     _wallCollisions.Clear();
 
@@ -163,11 +165,15 @@ namespace Game
                 GameController.Instance.PlayerDestroy();
             }
 
+            GetComponentInChildren<Collider>().enabled = false;
+
             _destroySleep += DestroySleep;
             //Anim.SetTrigger("Destroy");
             _audio.clip = SoundDetroy;
             _audio.Play();
             _lastDestroy = (GameObject)Instantiate(DestroyPrefab, transform.position, transform.rotation);
+            _lastDestroy.GetComponent<ParticleSystemRenderer>().material = _mesh.material;
+
             _mesh.enabled = false;
 
             if (ParentTransform.parent != null)
@@ -319,7 +325,7 @@ namespace Game
             }
             GVector = md;
             _sleep += SleepTime;
-            _currentDirection = MoveDirection.None;
+            //_currentDirection = MoveDirection.None;
         }
 
         private IEnumerator Rotation(float angle)

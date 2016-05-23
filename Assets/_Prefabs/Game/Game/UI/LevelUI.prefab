@@ -1834,7 +1834,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C 2"
+  m_Text: "\u0412\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C 1"
 --- !u!114 &11418784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2131,10 +2131,10 @@ MonoBehaviour:
   FFlash: {fileID: 11490150}
   SFlash: {fileID: 11476136}
   TFlash: {fileID: 11436018}
-  GoToMenu: 1
+  GoToMenu: 0
   LastLevelInWorld: 0
   NextWorld: 
-  NextLevel: W1L3
+  NextLevel: W1L5
 --- !u!114 &11423498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4065,7 +4065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "100 \u0431\u0430\u0442\u0430\u0440\u0435\u0435\u043A"
+  m_Text: 5.49
 --- !u!114 &11492308
 MonoBehaviour:
   m_ObjectHideFlags: 1

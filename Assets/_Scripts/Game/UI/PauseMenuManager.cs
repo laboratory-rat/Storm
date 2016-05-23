@@ -12,6 +12,8 @@ namespace Game.UI
         public GameObject SoundOnGO;
         public GameObject SoundOffGO;
 
+        private bool _adIsOn = false;
+
         public void Start()
         {
             var i = ConfigController.Instance.Config.Backgroud;
@@ -36,18 +38,19 @@ namespace Game.UI
             if (MarketController.Instance.PMone.ShowAD && Application.isMobilePlatform)
             {
                 Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7043369900", "ca-app-pub-9869209397937230/7043369900");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-                Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.MIDDLE_RIGHT, 0);
-                SceneController.Instance.OnSceneChanged += CloseAd;
+                Admob.Instance().showBannerRelative(AdSize.WideSkyscraper, AdPosition.MIDDLE_RIGHT, 0);
+                _adIsOn = true;
             }
-        }
-
-        private void CloseAd()
-        {
-            Admob.Instance().removeBanner();
         }
 
         public void Hide()
         {
+            if (_adIsOn)
+            {
+                Admob.Instance().removeBanner();
+                _adIsOn = false;
+            }
+
             Animator.SetTrigger("Hide");
             GameController.Instance.PauseGame(1f);
         }
@@ -55,6 +58,12 @@ namespace Game.UI
         public void Restart()
         {
             GameController.Instance.RestartLevel();
+
+            if (_adIsOn)
+            {
+                Admob.Instance().removeBanner();
+                _adIsOn = false;
+            }
         }
 
         public void Info()
@@ -85,6 +94,12 @@ namespace Game.UI
 
         public void Menu()
         {
+            if (_adIsOn)
+            {
+                Admob.Instance().removeBanner();
+                _adIsOn = false;
+            }
+
             SceneController.Instance.ChangeScene(SceneController.MENU, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
