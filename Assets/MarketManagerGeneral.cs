@@ -37,6 +37,8 @@ public class MarketManagerGeneral : MonoBehaviour
                 MarketController.Instance.PMone.ShowAD = false;
                 break;
         }
+
+        AchController.Instance.ShowAch("Boost!", 50);
     }
 
     public void onFailure(Product product, string message)

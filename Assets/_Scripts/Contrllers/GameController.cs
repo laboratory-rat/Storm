@@ -154,6 +154,47 @@ namespace Controller
 
         #endregion Player
 
+        #region Achiv
+
+        private bool _destroyOnLevel = false;
+        private int _levelsNoDestroy = 0;
+        private int _deathOnPlay = 0;
+
+        private void Start()
+        {
+            OnPlayerDestroy += () =>
+            {
+                _destroyOnLevel = true;
+                _deathOnPlay++;
+
+                if (_deathOnPlay == 5)
+                    AchController.Instance.ShowAch("Do not give up!", 20);
+                else if (_deathOnPlay == 50)
+                    AchController.Instance.ShowAch("DDOS", 120);
+            };
+
+            OnLevelFinished += () =>
+            {
+                if (!_destroyOnLevel)
+                    _levelsNoDestroy++;
+
+                if (_levelsNoDestroy == 5)
+                    AchController.Instance.ShowAch("Unlimited power!", 60);
+            };
+
+            OnLevelStart += () =>
+            {
+                _destroyOnLevel = false;
+            };
+
+            OnLevelRestart += () =>
+            {
+                _destroyOnLevel = false;
+            };
+        }
+
+        #endregion Achiv
+
         private void OnLevelWasLoaded(int i)
         {
             Time.timeScale = 1;
