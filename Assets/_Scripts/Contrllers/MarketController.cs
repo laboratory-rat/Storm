@@ -36,8 +36,8 @@ namespace Controller
 
         #endregion Instance
 
-        private const int COST_5 = 10;
-        private const int COST_FULL = 100;
+        private const int COST_10 = 10;
+        private const int COST_FULL = 20;
 
         public delegate void SimpleVoid();
 
@@ -151,9 +151,9 @@ namespace Controller
             Save();
         }
 
-        public bool Byu5ForBattery()
+        public bool Byu10ForBattery()
         {
-            if (MinusMoney(COST_5))
+            if (MinusMoney(COST_10))
             {
                 AddEnergy(5);
                 return true;

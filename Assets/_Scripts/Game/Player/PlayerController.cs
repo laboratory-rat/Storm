@@ -62,6 +62,8 @@ namespace Game
         private StateBox _start = null;
         private StateBox _checkPoint = null;
 
+        private bool _aura = true;
+
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
@@ -104,10 +106,29 @@ namespace Game
                     _wallCollisions.Clear();
 
                     GameController.Instance.PlayerAlive();
+                    _aura = true;
                 }
 
                 return;
             }
+
+            //Aura
+
+            if (_aura != CanRotate)
+            {
+                if (_aura == true)
+                {
+                    GetComponent<KeyController>().Pause();
+                    _aura = false;
+                }
+                else
+                {
+                    GetComponent<KeyController>().Play(true);
+                    _aura = true;
+                }
+            }
+
+            // Aura
 
             if (_sleep > 0)
                 _sleep--;
@@ -462,8 +483,6 @@ namespace Game
             }
             else if (!_wallCollisions.Contains(col.gameObject))
                 _wallCollisions.Add(col.gameObject);
-
-            Debug.Log(Vector3.Angle(col.contacts[0].normal, GetPlayerVector()));
 
             var p = col.gameObject.GetComponent<_PlatformBase>();
             if (p != null)

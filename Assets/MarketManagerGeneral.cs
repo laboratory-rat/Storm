@@ -17,16 +17,24 @@ public class MarketManagerGeneral : MonoBehaviour
                 MarketController.Instance.AddEnergy(MarketController.Instance.MaxEnergy - MarketController.Instance.PMone.Energy);
                 break;
 
-            case "100_money":
+            case "100_batteries":
                 MarketController.Instance.AddMoney(100);
                 break;
 
-            case "50_money":
+            case "50_batteries":
                 MarketController.Instance.AddMoney(50);
                 break;
 
-            case "5_leves":
-                MarketController.Instance.AddEnergy(5);
+            case "20_batteries":
+                MarketController.Instance.AddMoney(20);
+                break;
+
+            case "250_batteries":
+                MarketController.Instance.AddMoney(250);
+                break;
+
+            case "no_ads":
+                MarketController.Instance.PMone.ShowAD = false;
                 break;
         }
     }
@@ -37,7 +45,6 @@ public class MarketManagerGeneral : MonoBehaviour
 
     public void onCanceled(Product product)
     {
-        AndroidNativeFunctions.ShowAlert("Bad operation!", "Error", "Ok", "Cancel", "Ok", new UnityEngine.Events.UnityAction<DialogInterface>((DialogInterface d) => { Debug.Log(d.ToString()); }));
     }
 
     public void onRestored(Product product)

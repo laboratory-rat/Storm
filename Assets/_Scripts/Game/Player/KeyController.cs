@@ -22,7 +22,7 @@ namespace Game
             _baseMat = Mesh.material;
         }
 
-        private void Pause()
+        public void Pause()
         {
             var emit = Particles.emission;
             emit.enabled = false;
@@ -34,6 +34,12 @@ namespace Game
             emit.enabled = true;
 
             Reset();
+        }
+
+        public void Play(bool s)
+        {
+            var emit = Particles.emission;
+            emit.enabled = true;
         }
 
         public void SetCommand(Material m, string command, KeySetter setter)
@@ -70,6 +76,7 @@ namespace Game
             Command = "";
             Mesh.material = _baseMat;
             Particles.GetComponent<ParticleSystemRenderer>().material = _baseMat;
+            _setter = null;
         }
 
         private void OnDestroy()

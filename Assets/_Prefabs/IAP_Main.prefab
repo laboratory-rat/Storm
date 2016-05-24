@@ -49,14 +49,20 @@ MonoBehaviour:
   - name: no_ads
     id: no_ads
     consumable: 1
-  - name: 100_money
-    id: 100_money
+  - name: 20_batteries
+    id: 20_batteries
     consumable: 0
-  - name: 50_money
-    id: 50_money
+  - name: 50_batteries
+    id: 50_batteries
     consumable: 0
   - name: full_life
     id: full_life
+    consumable: 0
+  - name: 100_batteries
+    id: 100_batteries
+    consumable: 0
+  - name: 250_batteries
+    id: 250_batteries
     consumable: 0
   callbacks:
     onInitialized:

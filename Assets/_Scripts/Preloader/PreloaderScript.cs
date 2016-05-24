@@ -24,7 +24,8 @@ public class PreloaderScript : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(W());
+        //StartCoroutine(W());
+        LoadGame();
     }
 
     private IEnumerator W()

@@ -21,12 +21,24 @@ namespace Game.UI
             StopUI.SetActive(true);
             GameController.Instance.PauseGame(0f);
             Continue.SetActive(false);
+
+            Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7682387909", "ca-app-pub-9869209397937230/7682387909");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
+            Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.BOTTOM_CENTER, 0);
+            Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
+            rev = true;
         }
 
         public void Unpause()
         {
             StopUI.SetActive(false);
             GameController.Instance.PauseGame(1f);
+
+            if (rev)
+            {
+                rev = false;
+                Admob.Instance().bannerEventHandler -= NoEnergyManager_bannerEventHandler;
+                Admob.Instance().removeBanner();
+            }
         }
 
         public void OnEnergy()
@@ -43,7 +55,7 @@ namespace Game.UI
 
         public void Buy5()
         {
-            if (MarketController.Instance.Byu5ForBattery())
+            if (MarketController.Instance.Byu10ForBattery())
                 Unpause();
             else
             {
@@ -63,25 +75,16 @@ namespace Game.UI
 
         private bool rev = false;
 
-        public void AddTwo()
-        {
-            Admob.Instance().initAdmob("ca-app-pub-9869209397937230/5747570306", "ca-app-pub-9869209397937230/5747570306");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-            Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.MIDDLE_CENTER, 0);
-            Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
-            rev = true;
-
-            //SceneController.Instance.OnSceneChanged += CloseAd;
-        }
-
         private void NoEnergyManager_bannerEventHandler(string eventName, string msg)
         {
-            if (eventName == AdmobEvent.onAdClosed)
+            if (eventName == AdmobEvent.onAdOpened)
             {
-                MarketController.Instance.AddEnergy(1);
+                MarketController.Instance.AddEnergy(2);
             }
 
             rev = false;
             Admob.Instance().bannerEventHandler -= NoEnergyManager_bannerEventHandler;
+            Admob.Instance().removeBanner();
         }
 
         public void Menu()
