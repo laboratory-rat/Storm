@@ -19,8 +19,6 @@ namespace Controller
                 _instance = this;
             else if (_instance != this)
                 Destroy(this);
-
-            SceneController.Instance.OnSceneChanged += Start;
         }
 
         private void Start()
@@ -28,22 +26,39 @@ namespace Controller
             if (!Application.isMobilePlatform)
                 return;
 
+            SceneController.Instance.OnSceneChanged += CloseAD;
+            OpenAD();
+        }
+
+        private void OnSceneWasLoaded()
+        {
+            OpenAD();
+        }
+
+        private bool _ad = false;
+
+        private void OpenAD()
+        {
+            if (_ad)
+                return;
+
+            _ad = true;
+
             if (SceneController.Instance.GetSceneName() == "Menu")
-            {
                 ShowMenuAd();
-                SceneController.Instance.OnSceneChanged += CloseAD;
-            }
             else if (SceneController.Instance.GetSceneName() == "Loading")
-            {
                 ShowLoadingAd();
-                SceneController.Instance.OnSceneChanged += CloseAD;
-            }
+            else
+                _ad = false;
         }
 
         private void CloseAD()
         {
+            if (!_ad)
+                return;
+
             Admob.Instance().removeBanner();
-            SceneController.Instance.OnSceneChanged -= CloseAD;
+            _ad = false;
         }
 
         public void ShowMenuAd()
@@ -55,7 +70,7 @@ namespace Controller
         public void ShowLoadingAd()
         {
             Admob.Instance().initAdmob("ca-app-pub-9869209397937230/9227793503", "ca-app-pub-9869209397937230/9227793503");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-            Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.MIDDLE_RIGHT, 0);
+            Admob.Instance().showBannerRelative(AdSize.Leaderboard, AdPosition.TOP_CENTER, 0);
         }
     }
 }

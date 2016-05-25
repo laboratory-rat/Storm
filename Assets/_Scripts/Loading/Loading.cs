@@ -22,7 +22,7 @@ namespace Loader
         {
             if (_ao != null)
             {
-                _text.text = System.Math.Round(_ao.progress, 3).ToString();
+                _text.text = (System.Math.Round(_ao.progress, 3) * 100).ToString() + "%";
             }
         }
 

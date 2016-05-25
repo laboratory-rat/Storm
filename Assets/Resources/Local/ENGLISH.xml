@@ -30,4 +30,12 @@
     <element id="er_lable">Energy restored!</element>
     <element id="er_text">Go fuck your self!</element>
   </area>
+
+  <area id="rate_message">
+    <element id="1">Rate this app!</element>
+    <element id="2">How about rate this app?</element>
+    <element id="3">Wat a nice day to rate this app!</element>
+    <element id="4">Did you know, you can rate this app!</element>
+    <element id="5">Rate this app, or I will kill your dog!</element>
+  </area>
 </Local>

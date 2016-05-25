@@ -90,14 +90,14 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.MadRat.Strom
-  bundleVersion: 0.8.62
+  bundleVersion: 0.8.63
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 188f26ddb23d4e24280a6fb9c9fde922
-  AndroidBundleVersionCode: 62
+  AndroidBundleVersionCode: 63
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 1
   aotOptions: 

@@ -106,7 +106,7 @@ namespace Game
                     _wallCollisions.Clear();
 
                     GameController.Instance.PlayerAlive();
-                    _aura = true;
+                    //_aura = true;
                 }
 
                 return;
@@ -114,19 +114,19 @@ namespace Game
 
             //Aura
 
-            if (_aura != CanRotate)
-            {
-                if (_aura == true)
-                {
-                    GetComponent<KeyController>().Pause();
-                    _aura = false;
-                }
-                else
-                {
-                    GetComponent<KeyController>().Play(true);
-                    _aura = true;
-                }
-            }
+            //if (_aura != CanRotate)
+            //{
+            //    if (_aura == true)
+            //    {
+            //        GetComponent<KeyController>().Pause();
+            //        _aura = false;
+            //    }
+            //    else
+            //    {
+            //        GetComponent<KeyController>().Play(true);
+            //        _aura = true;
+            //    }
+            //}
 
             // Aura
 

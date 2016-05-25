@@ -21,7 +21,7 @@ namespace Controller
             }
         }
 
-        private void Init()
+        private void Awake()
         {
             if (_instance == null)
             {
@@ -39,15 +39,109 @@ namespace Controller
 
         private Ach _achivs = null;
 
+        public const int RateInSession = 3;
+        public const int TimePerFirst = 100;
+        public const int RateSleepTime = 300;
+
+        //public int TimePerFirst = 20;
+        //public int RateSleepTime = 50;
+
+        public List<string> RateText = new List<string>();
+        public DateTime LastRateCheck;
+        public int rateInSession = 0;
+
         private void Start()
         {
             _achivs = Ach.Load();
+
+            RateText = new List<string>()
+            {
+            LocalController.Instance.L("rate_message", "1"),
+            LocalController.Instance.L("rate_message", "2"),
+            LocalController.Instance.L("rate_message", "3"),
+            LocalController.Instance.L("rate_message", "4"),
+            LocalController.Instance.L("rate_message", "5"),
+            };
 
             if (_achivs == null)
             {
                 _achivs = new Ach();
                 Ach.Save(_achivs);
             }
+
+            if (!Application.isMobilePlatform)
+                return;
+
+            if (!_achivs.IsRated && MarketController.Instance.PMone.ShowAD)
+            {
+                LastRateCheck = DateTime.Now;
+
+                int x = Mathf.Abs((int)_achivs.SessionData.Subtract(LastRateCheck).TotalDays);
+                if (x > 0)
+                {
+                    _achivs.SessionData = DateTime.Now;
+                    _achivs.RateToday = true;
+                    Save();
+                }
+
+                if (!_achivs.RateToday)
+                    return;
+
+                GameController.Instance.OnLevelFinished += () =>
+                {
+                    if (!_achivs.RateToday)
+                        return;
+
+                    if (_achivs.IsRated || !MarketController.Instance.PMone.ShowAD)
+                        return;
+
+                    if (rateInSession >= RateInSession)
+                    {
+                        _achivs.RateToday = false;
+                        Save();
+                        return;
+                    }
+
+                    if (!AndroidNativeFunctions.isConnectInternet())
+                        return;
+
+                    int i = Mathf.Abs((int)LastRateCheck.Subtract(DateTime.Now).TotalSeconds);
+
+                    if (rateInSession == 0)
+                    {
+                        if (i >= TimePerFirst)
+                        {
+                            ShowRateMessage();
+                            LastRateCheck = DateTime.Now;
+                            rateInSession++;
+                        }
+                    }
+                    else
+                    {
+                        if (i >= RateSleepTime)
+                        {
+                            ShowRateMessage();
+                            LastRateCheck = DateTime.Now;
+                            rateInSession++;
+                        }
+                    }
+                };
+            }
+        }
+
+        public void ShowRateMessage()
+        {
+            int index = UnityEngine.Random.Range(0, RateText.Count - 1);
+            string text = RateText[index];
+            AndroidNativeFunctions.ShowAlert(text, "Rate", "Go to market", "Later", "", (DialogInterface di) =>
+            {
+                if (di == DialogInterface.Positive)
+                {
+                    AndroidNativeFunctions.OpenGooglePlay("com.MadRat.Strom");
+                    _achivs.IsRated = true;
+                    Save();
+                }
+            });
         }
 
         public void ShowAch(string name, int revard)
@@ -62,15 +156,24 @@ namespace Controller
             }
         }
 
+        private void Save()
+        {
+            Ach.Save(_achivs);
+        }
+
         private void OnDestroy()
         {
             if (_achivs != null)
                 Ach.Save(_achivs);
         }
 
+        [Serializable]
         public class Ach
         {
             public List<KeyValuePair<string, int>> ach;
+            public bool IsRated = false;
+            public DateTime SessionData = DateTime.Now;
+            public bool RateToday = true;
 
             public bool InAch(string s)
             {
@@ -103,6 +206,10 @@ namespace Controller
             public Ach()
             {
                 ach = new List<KeyValuePair<string, int>>();
+                IsRated = false;
+                SessionData = DateTime.Now;
+                RateToday = true;
+
                 Save(this);
             }
 
