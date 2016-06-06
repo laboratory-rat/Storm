@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Controller;
+using System.Collections;
 using UnityEngine;
 
 namespace UI
@@ -42,6 +43,51 @@ namespace UI
             }
 
             Market.SetActive(false);
+        }
+
+        public void ShowFB()
+        {
+            if (!Application.isMobilePlatform)
+                return;
+
+            if (AndroidNativeFunctions.isConnectInternet())
+            {
+                Application.OpenURL("https://www.facebook.com/groups/1557207654581833/");
+            }
+            else
+            {
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("errors", "no_internet"));
+            }
+        }
+
+        public void ShowTW()
+        {
+            if (!Application.isMobilePlatform)
+                return;
+
+            if (AndroidNativeFunctions.isConnectInternet())
+            {
+                Application.OpenURL("https://twitter.com/Mad_Rat_Team");
+            }
+            else
+            {
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("errors", "no_internet"));
+            }
+        }
+
+        public void OpenGP()
+        {
+            if (!Application.isMobilePlatform)
+                return;
+
+            if (AndroidNativeFunctions.isConnectInternet())
+            {
+                AndroidNativeFunctions.OpenGooglePlay("com.MadRat.Strom");
+            }
+            else
+            {
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("errors", "no_internet"));
+            }
         }
 
         //private IEnumerator hide()

@@ -56,12 +56,13 @@ namespace Controller
         private Dictionary<string, Dictionary<string, string>> _baseLocalDictionary = new Dictionary<string, Dictionary<string, string>>();
         private Dictionary<string, Dictionary<string, string>> _localDictionary = new Dictionary<string, Dictionary<string, string>>();
 
-        private const string _error = "Localization error.";
+        private const string _error = " ";
 
         public readonly Dictionary<int, string> dk = new Dictionary<int, string>
         {
             { 0 , "ENGLISH" },
             { 1 , "RUSSIAN" },
+            { 2 , "UKRAINIAN" },
         };
 
         private void Awake()

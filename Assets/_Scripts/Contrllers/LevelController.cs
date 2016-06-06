@@ -58,6 +58,36 @@ namespace Controller
 
             GameController.Instance.OnFirstEnter += OnFirstEnter;
             GameController.Instance.OnNewVerion += OnNewVersion;
+
+            //for (int i = 0; i < 9; i++)
+            //{
+            //    OpenNew("First", "W1L" + (i + 1).ToString());
+            //}
+
+            OpenOnLoad();
+        }
+
+        public bool OpenLevelsOnLoad = false;
+        public string[] WorldNames;
+        public int[] LevelCounts;
+
+        private void OpenOnLoad()
+        {
+            if (OpenLevelsOnLoad)
+            {
+                if (WorldNames.Length > 0 && LevelCounts.Length > 0)
+                {
+                    for (int w = 0; w < WorldNames.Length; w++)
+                    {
+                        for (int l = 0; l < LevelCounts[w]; l++)
+                        {
+                            string level = "W" + (w + 1) + "L" + (l + 1);
+                            Debug.Log("Open " + level);
+                            OpenNew(WorldNames[w], level);
+                        }
+                    }
+                }
+            }
         }
 
         public void OpenNew(string world, string level)
@@ -72,7 +102,8 @@ namespace Controller
             else if (GetLevelByScene(w.Name, level) == null)
             {
                 Level l = new Level(LevelPackage.GetLevelByScene(world, level));
-                w.Levels.Add(l);
+                if (l != null)
+                    w.Levels.Add(l);
             }
             else
                 return;
@@ -81,6 +112,31 @@ namespace Controller
 
             if (OnLevelsChanged != null)
                 OnLevelsChanged.Invoke();
+        }
+
+        public void OpenWorld(string world)
+        {
+            foreach (var ww in OpenWords)
+            {
+                if (ww.Name == world)
+                    return;
+            }
+
+            World w;
+
+            if ((w = LevelPackage.GetWorld(world)) != null)
+            {
+                OpenWords.Add(new World(w));
+
+                if (OnLevelsChanged != null)
+                    OnLevelsChanged.Invoke();
+
+                SaveProgress();
+            }
+            else
+            {
+                ErrorController.Instance.Send(this, "Bad level pack!");
+            }
         }
 
         public void UpLevelRate(string world, string level, FlashRate rate)
@@ -155,6 +211,21 @@ namespace Controller
             return null;
         }
 
+        public bool IsAllLP()
+        {
+            return OpenWords.Count == LevelPackage.GameWorlds.Count;
+        }
+
+        public void OpenNexLevelPack()
+        {
+            int index = OpenWords.Count;
+
+            World w = new World(LevelPackage.GameWorlds[index]);
+
+            if (OnLevelsChanged != null)
+                OnLevelsChanged.Invoke();
+        }
+
         #endregion Bool
 
         #region System
@@ -188,8 +259,6 @@ namespace Controller
 
         private void OnNewVersion()
         {
-            if (OnLevelsChanged != null)
-                OnLevelsChanged.Invoke();
         }
 
         #endregion System
@@ -212,6 +281,9 @@ namespace Controller
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(fs, OpenWords);
                 }
+
+                if (OnLevelsChanged != null)
+                    OnLevelsChanged.Invoke();
             }
             catch (Exception ex)
             {

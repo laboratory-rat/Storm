@@ -24,18 +24,23 @@
     <element id="last_level">Sorry, it was the last level. Please, come back later.</element>
   </area>
   <area id="errors">
-    <element id="button2">Hello2</element>
+    <element id="no_internet">No internet conection</element>
   </area>
   <area id="notification">
     <element id="er_lable">Energy restored!</element>
     <element id="er_text">Go fuck your self!</element>
   </area>
 
+  <area id="help">
+    <element id="rotate_more">If you see a sign with smartphone at level.</element>
+    <element id="rotate">Jump and tilt your phone ahead to roll over.</element>
+  </area>
+
   <area id="rate_message">
-    <element id="1">Rate this app!</element>
+    <element id="1">Help our team, rate Strom on Play Market!</element>
     <element id="2">How about rate this app?</element>
     <element id="3">Wat a nice day to rate this app!</element>
     <element id="4">Did you know, you can rate this app!</element>
-    <element id="5">Rate this app, or I will kill your dog!</element>
+    <element id="5">Help our team, rate Strom on Play Market!</element>
   </area>
 </Local>

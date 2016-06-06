@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 6b8cc10956a75af4c968a557d3b723d9
+labels:
+- W2
 timeCreated: 1460242270
 licenseType: Free
 DefaultImporter:

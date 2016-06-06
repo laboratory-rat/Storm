@@ -10,6 +10,8 @@ namespace UI
         public Text TextComponent;
         public Sprite ClosedImage;
         public string World;
+        public string NextWorld = "";
+        public bool LastWorld = true;
         public Animator Anim;
         public string Trigger = "ToLevels";
 
@@ -41,6 +43,14 @@ namespace UI
                 {
                     TextComponent.text = _world.Flash + " / " + _world.RequireFlash;
                     _button.onClick.AddListener(() => { Anim.SetTrigger(Trigger); _ls.PlaceLevels(World); });
+
+                    if (!string.IsNullOrEmpty(NextWorld) && !LastWorld)
+                    {
+                        if (_world.Flash >= _world.RequireFlash)
+                        {
+                            LevelController.Instance.OpenWorld(NextWorld);
+                        }
+                    }
                 }
             }
         }

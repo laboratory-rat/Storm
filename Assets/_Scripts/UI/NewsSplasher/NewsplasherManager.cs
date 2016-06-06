@@ -15,22 +15,22 @@ namespace UI
         {
             if (ConfigController.Instance.Config.FirstEnter == "1")
             {
-                Anim.SetTrigger("ShowNews");
-                TextArea.text = LocalController.Instance.L("news", "new");
+                //Anim.SetTrigger("ShowNews");
+                //TextArea.text = LocalController.Instance.L("news", "new");
                 ConfigController.Instance.Config.Version = Application.version;
                 ConfigController.Instance.Config.FirstEnter = "0";
                 ConfigController.Instance.SaveConfig();
                 GameController.Instance.FirstEnter();
-                _show = true;
+                //_show = true;
             }
             else if (ConfigController.Instance.Config.Version != Application.version)
             {
-                Anim.SetTrigger("ShowNews");
-                TextArea.text = LocalController.Instance.L("news", "splash").Replace("{VERSION}", Application.version);
+                //Anim.SetTrigger("ShowNews");
+                //TextArea.text = LocalController.Instance.L("news", "splash").Replace("{VERSION}", Application.version);
                 ConfigController.Instance.Config.Version = Application.version;
                 ConfigController.Instance.SaveConfig();
                 GameController.Instance.NewVersion();
-                _show = true;
+                //_show = true;
             }
         }
 

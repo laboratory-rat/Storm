@@ -13,7 +13,7 @@ public class MarketManagerGeneral : MonoBehaviour
     {
         switch (product.name)
         {
-            case "full_life":
+            case "full_energy":
                 MarketController.Instance.AddEnergy(MarketController.Instance.MaxEnergy - MarketController.Instance.PMone.Energy);
                 break;
 
@@ -35,10 +35,19 @@ public class MarketManagerGeneral : MonoBehaviour
 
             case "no_ads":
                 MarketController.Instance.PMone.ShowAD = false;
+                MarketController.Instance.PMone.UnlimitedEnergy = true;
+                break;
+
+            case "10_batteries":
+                MarketController.Instance.AddMoney(10);
+                break;
+
+            case "level_pack":
+                LevelController.Instance.OpenNexLevelPack();
                 break;
         }
 
-        AchController.Instance.ShowAch("Boost!", 50);
+        AchController.Instance.ShowAch("Boost!", 20);
     }
 
     public void onFailure(Product product, string message)

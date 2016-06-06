@@ -22,15 +22,13 @@ namespace Game
         private bool _roundStarted = false;
 
         private float _roundTime = 0.1f;
+        private AudioSource _audio;
 
         private void Start()
         {
-            if (_player = FindObjectOfType<PlayerController>())
-            {
-                Debug.Log("Player");
-            }
-            else
-                Debug.Log("Error. Can not find player!");
+            _player = FindObjectOfType<PlayerController>();
+
+            _audio = GetComponent<AudioSource>();
         }
 
         protected void FixedUpdate()
@@ -69,6 +67,7 @@ namespace Game
                 var go = (GameObject)Instantiate(BulletPrefab, ShootGO.transform.position, ShootGO.transform.rotation);
                 go.GetComponent<IBullet>().Init((_player.transform.position - ShootGO.transform.position).normalized, Range);
                 _reloaded = false;
+                _audio.Play();
                 StartCoroutine(Reload());
             }
             else
@@ -82,6 +81,7 @@ namespace Game
             _reloaded = false;
             for (int i = 0; i < IntRounds; i++)
             {
+                _audio.Play();
                 var go = (GameObject)Instantiate(BulletPrefab, ShootGO.transform.position, ShootGO.transform.rotation);
                 go.GetComponent<IBullet>().Init((_player.transform.position - ShootGO.transform.position).normalized, Range);
                 yield return new WaitForSeconds(_roundTime);

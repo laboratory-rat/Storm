@@ -14,6 +14,41 @@ ModelImporter:
     100012: SL
     100014: Sphere
     100016: SR
+    100018: Armature
+    100020: Bone
+    100022: Bone.001
+    100024: Bone.002
+    100026: Bone.003
+    100028: Bone.004
+    100030: Bone.005
+    100032: Bone.006
+    100034: Bone.007
+    100036: Bone.007_end
+    100038: Bone.008
+    100040: Bone.009
+    100042: Bone.010
+    100044: Bone.011
+    100046: Bone.012
+    100048: Bone.013
+    100050: Bone.014
+    100052: Bone.015
+    100054: Bone.015_end
+    100056: Bone.016
+    100058: Bone.017
+    100060: Bone.018
+    100062: Bone.019
+    100064: Bone.020
+    100066: Bone.020_end
+    100068: Bone.021
+    100070: Bone.022
+    100072: Bone.022_end
+    100074: Bone.023
+    100076: Bone.023_end
+    100078: Bone.024
+    100080: Bone.024_end
+    100082: Bone.025
+    100084: Bone.025_end
+    100086: Cube
     400000: Down
     400002: //RootNode
     400004: Up
@@ -23,6 +58,41 @@ ModelImporter:
     400012: SL
     400014: Sphere
     400016: SR
+    400018: Armature
+    400020: Bone
+    400022: Bone.001
+    400024: Bone.002
+    400026: Bone.003
+    400028: Bone.004
+    400030: Bone.005
+    400032: Bone.006
+    400034: Bone.007
+    400036: Bone.007_end
+    400038: Bone.008
+    400040: Bone.009
+    400042: Bone.010
+    400044: Bone.011
+    400046: Bone.012
+    400048: Bone.013
+    400050: Bone.014
+    400052: Bone.015
+    400054: Bone.015_end
+    400056: Bone.016
+    400058: Bone.017
+    400060: Bone.018
+    400062: Bone.019
+    400064: Bone.020
+    400066: Bone.020_end
+    400068: Bone.021
+    400070: Bone.022
+    400072: Bone.022_end
+    400074: Bone.023
+    400076: Bone.023_end
+    400078: Bone.024
+    400080: Bone.024_end
+    400082: Bone.025
+    400084: Bone.025_end
+    400086: Cube
     2300000: Down
     2300002: Up
     2300004: Base
@@ -47,6 +117,7 @@ ModelImporter:
     4300010: SR
     4300012: Base
     4300014: Sphere
+    4300016: Cube
     7400000: Key|CubeAction
     7400002: Key|KeyAction
     7400004: Key|PointAction
@@ -56,6 +127,7 @@ ModelImporter:
     7400012: Up|PointAction
     7400014: Rotation
     9500000: //RootNode
+    13700000: Cube
   materials:
     importMaterials: 0
     materialName: 0

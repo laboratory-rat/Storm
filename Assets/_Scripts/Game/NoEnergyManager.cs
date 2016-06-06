@@ -2,6 +2,7 @@
 using Controller;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI
 {
@@ -9,6 +10,7 @@ namespace Game.UI
     {
         public GameObject StopUI;
         public GameObject Continue;
+        public Text TimerText;
 
         private void Start()
         {
@@ -22,16 +24,56 @@ namespace Game.UI
             GameController.Instance.PauseGame(0f);
             Continue.SetActive(false);
 
-            Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7682387909", "ca-app-pub-9869209397937230/7682387909");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-            Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.BOTTOM_CENTER, 0);
-            Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
-            rev = true;
+            if (Application.isMobilePlatform)
+            {
+                if (MarketController.Instance.PMone.ShowAD)
+                {
+                    Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7682387909", "ca-app-pub-9869209397937230/7682387909");//admob id
+                    Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.BOTTOM_CENTER, 0);
+                    Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
+                    rev = true;
+                }
+            }
+            ShowTimer();
+        }
+
+        public int time;
+
+        public void ShowTimer()
+        {
+            time = Mathf.Abs((int)MarketController.Instance.PMone.LastRest.Subtract(System.DateTime.Now).TotalSeconds);
+
+            int minutes = Mathf.FloorToInt(time / 60);
+            int seconds = time - minutes * 60;
+
+            TimerText.text = string.Format("{0}:{1}", minutes.ToString(), seconds.ToString());
+
+            StartCoroutine(tick());
+        }
+
+        public IEnumerator tick()
+        {
+            do
+            {
+                Debug.Log(time);
+
+                yield return new WaitForFixedUpdate();
+
+                time = Mathf.Abs((int)MarketController.Instance.PMone.LastRest.Subtract(System.DateTime.Now).TotalSeconds);
+
+                int minutes = Mathf.FloorToInt(time / 60);
+                int seconds = time - minutes * 60;
+
+                TimerText.text = string.Format("{0}:{1}", minutes.ToString(), seconds.ToString());
+            } while (time > 0);
         }
 
         public void Unpause()
         {
             StopUI.SetActive(false);
             GameController.Instance.PauseGame(1f);
+
+            StopAllCoroutines();
 
             if (rev)
             {
@@ -53,7 +95,7 @@ namespace Game.UI
             }
         }
 
-        public void Buy5()
+        public void Buy10ForB()
         {
             if (MarketController.Instance.Byu10ForBattery())
                 Unpause();
@@ -63,7 +105,7 @@ namespace Game.UI
             }
         }
 
-        public void BuyFull()
+        public void BuyFullForB()
         {
             if (MarketController.Instance.ByuFullForBattery())
                 Unpause();

@@ -18,20 +18,25 @@
     <element id="back">Back</element>
   </area>
   <area id="game_menu">
-    <element id="last_level">Sorry, it was the last level. Please, come back later.</element>
+    <element id="last_level">Простите, это пока последний уровень.</element>
   </area>
   <area id="errors">
-    <element id="button2">Hello2</element>
+    <element id="no_internet">Нету интернет соединения</element>
   </area>
   <area id="notification">
     <element id="er_lable">Energy restored!</element>
     <element id="er_text">Go fuck your self!</element>
   </area>
+  <area id="help">
+    <element id="rotate_more">Если вы видете табличку со смартфоном на уровне.</element>
+    <element id="rotate">Нажмите прыжок и немного встряхните телефон, что бы совершить переворот на 180 градусов.</element>
+  </area>
+
   <area id="rate_message">
-    <element id="1">Проголосуй! Или я сожгу твой дом!</element>
+    <element id="1">Понравилась игра? Поставь оценку на Play Market!</element>
     <element id="2">Помогите молодому приложению! Ваш голос важен для нас!</element>
-    <element id="3">НИЧТОЖЕСТВО! ПОСТАВЬ ОЦЕНКУ ПРИЛОЖЕНИЮ!!!</element>
-    <element id="4">НИЧТОЖЕСТВО!... Стоп, такой вариант уже был. Проголосуй за приложение)</element>
-    <element id="5">Проголосуйте за приолжение или все панды вымрут ^.^</element>
+    <element id="3">Нам важно Ваше мнение! Поставте оценку приложению!</element>
+    <element id="4">НИЧТОЖЕСТВО!... Ой, не та игра. Проголосуй за приложение)</element>
+    <element id="5">Лучший показатель нашей работы - Ваши оценки приложению.</element>
   </area>
 </Local>

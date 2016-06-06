@@ -64,7 +64,7 @@ namespace Controller
         public void ShowMenuAd()
         {
             Admob.Instance().initAdmob("ca-app-pub-9869209397937230/5747570306", "ca-app-pub-9869209397937230/5747570306");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-            Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.BOTTOM_CENTER, 0);
+            Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.TOP_CENTER, 0);
         }
 
         public void ShowLoadingAd()

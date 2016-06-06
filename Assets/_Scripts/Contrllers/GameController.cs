@@ -85,12 +85,17 @@ namespace Controller
         {
             if (OnFirstEnter != null)
                 OnFirstEnter.Invoke();
+
+            MarketController.Instance.AddMoney(200);
         }
 
         public void NewVersion()
         {
             if (OnNewVerion != null)
                 OnNewVerion.Invoke();
+
+            MarketController.Instance.PMone.Money = 199;
+            MarketController.Instance.AddEnergy(1);
         }
 
         #endregion System
@@ -107,12 +112,10 @@ namespace Controller
 
         public void RestartLevel()
         {
-            if (MarketController.Instance.MinusEnergy())
-            {
-                SceneController.Instance.ReloadLevel(true);
-            }
-            else
-                AndroidNativeFunctions.ShowToast("Energy");
+            if (OnLevelRestart != null)
+                OnLevelRestart.Invoke();
+
+            SceneController.Instance.ReloadLevel(true);
         }
 
         #endregion Level

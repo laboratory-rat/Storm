@@ -1,0 +1,45 @@
+<Local>
+  <area id="news">
+    <element id="splash">
+      Current version is {VERSION}
+      ------------------------------
+      -- New levels
+      -- New tools
+    </element>
+    <element id="new">
+      Hello. Velcome in Strom.
+    </element>
+  </area>
+  <area id="langs">
+    <element id="english">Англійська</element>
+    <element id="russian">Російська</element>
+    <element id="ukrainian">Украінська</element>
+  </area>
+  <area id="main_menu">
+    <element id="levels">Levels</element>
+    <element id="options">Options</element>
+    <element id="info">Info</element>
+    <element id="back">Back</element>
+  </area>
+  <area id="game_menu">
+    <element id="last_level">Вибачте, це був останній рівень.</element>
+  </area>
+  <area id="errors">
+    <element id="no_internet">Немає мережі</element>
+  </area>
+  <area id="notification">
+    <element id="er_lable">Energy restored!</element>
+    <element id="er_text">Go fuck your self!</element>
+  </area>
+  <area id="help">
+    <element id="rotate_more">Якщо ви бачите табличку зі змартфоном на уровні.</element>
+    <element id="rotate">Натисніть стрибок та легко струсіть смартфон, щоб перевернуися на 180 градусів.</element>
+  </area>
+  <area id="rate_message">
+    <element id="1">Час проголосувати за додаток!</element>
+    <element id="2">Сподобався додаток? Проголосуй!</element>
+    <element id="3">Краща відзнака - гарна оцінка!</element>
+    <element id="4">За цю гру можна і проголосувати!</element>
+    <element id="5">Допоможи проекту! Постав нам оцінку!</element>
+  </area>
+</Local>

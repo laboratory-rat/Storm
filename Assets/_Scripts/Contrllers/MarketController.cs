@@ -85,6 +85,16 @@ namespace Controller
             GameController.Instance.OnPlayerDestroy += MinusEnergyOnDestroy;
         }
 
+        private void Start()
+        {
+            // For debug!
+
+            //PMone.Energy = 1;
+            //Save();
+
+            //
+        }
+
         private void OnDestroy()
         {
             GameController.Instance.OnPlayerDestroy -= MinusEnergyOnDestroy;

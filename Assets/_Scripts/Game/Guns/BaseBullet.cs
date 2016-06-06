@@ -16,6 +16,13 @@ namespace Game
         private float _range = 0f;
         private Vector3 _base;
 
+        private AudioSource _audio;
+
+        private void Start()
+        {
+            _audio = GetComponent<AudioSource>();
+        }
+
         public void Init(Vector3 Reletive, float range)
         {
             _v = Reletive;
@@ -39,6 +46,11 @@ namespace Game
 
         public void Destroy()
         {
+            if (_audio)
+            {
+                _audio.Play();
+            }
+
             _destroyed = true;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
