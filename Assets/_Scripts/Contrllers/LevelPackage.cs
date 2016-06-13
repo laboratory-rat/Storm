@@ -9,8 +9,8 @@ namespace Controller
             new World
             {
                 Name = "First",
-                RequireFlash = 40,
-                Cost = 0,
+                RequireFlash = 30,
+                Cost = 15,
                 Levels = new List<Level>
                 {
                     new Level
@@ -138,8 +138,8 @@ namespace Controller
             new World
             {
                 Name = "Second",
-                RequireFlash = 40,
-                Cost = 10,
+                RequireFlash = 38,
+                Cost = 25,
                 Levels = new List<Level>
                 {
                     new Level
@@ -158,6 +158,7 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
+                    /*
                     new Level
                     {
                         Name = "3",
@@ -261,6 +262,8 @@ namespace Controller
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
+
+                    */
                 },
             },
         };

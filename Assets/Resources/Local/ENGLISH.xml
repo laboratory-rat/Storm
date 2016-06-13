@@ -43,4 +43,14 @@
     <element id="4">Did you know, you can rate this app!</element>
     <element id="5">Help our team, rate Strom on Play Market!</element>
   </area>
+
+  <area id="market_level">
+    <element id="no_b">Sorry, not enough batteries.</element>
+    <element id="buy">Open new level?</element>
+    <element id="b">batteries</element>
+    <element id="title">Closed level</element>
+    <element id="yes">Yes</element>
+    <element id="no">No</element>
+    <element id="success">Level success opened!</element>
+  </area>
 </Local>

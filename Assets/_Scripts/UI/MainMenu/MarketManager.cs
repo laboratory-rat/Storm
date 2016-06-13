@@ -52,7 +52,7 @@ namespace UI
 
             if (AndroidNativeFunctions.isConnectInternet())
             {
-                Application.OpenURL("https://www.facebook.com/groups/1557207654581833/");
+                Application.OpenURL("https://www.facebook.com/MadRatTeam");
             }
             else
             {

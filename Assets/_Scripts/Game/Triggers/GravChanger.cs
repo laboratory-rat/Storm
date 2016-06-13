@@ -45,6 +45,7 @@ namespace Game
             if (p = coll.GetComponent<PlayerController>())
             {
                 p.Rotate(New);
+                p._rb.velocity = Vector3.zero;
             }
         }
 

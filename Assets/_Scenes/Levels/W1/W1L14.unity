@@ -686,6 +686,56 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 464334, guid: 8a3e206ab9983cc48bf8f9ac1045fdbb, type: 2}
   m_PrefabInternal: {fileID: 334953579}
+--- !u!1001 &344504353
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1521471668}
+    m_Modifications:
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.000001296401
+      objectReference: {fileID: 0}
+    - target: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_RootOrder
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 188282, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+      propertyPath: m_Name
+      value: S6 (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &344504354 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 403616, guid: 84dfb70ac12435e4a897c139c87c2d0f, type: 2}
+  m_PrefabInternal: {fileID: 344504353}
 --- !u!1001 &360897989
 Prefab:
   m_ObjectHideFlags: 0
@@ -2908,7 +2958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &1429256216
 Prefab:
   m_ObjectHideFlags: 0
@@ -3257,6 +3307,7 @@ Transform:
   - {fileID: 737538117}
   - {fileID: 1429256217}
   - {fileID: 142888587}
+  - {fileID: 344504354}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!1 &1555669319

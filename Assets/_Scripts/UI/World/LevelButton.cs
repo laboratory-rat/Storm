@@ -61,9 +61,12 @@ namespace UI
             }
             else
             {
-                AndroidNativeFunctions.ShowToast("Мало энергии");
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("market_level", "no_b"));
             }
         }
+
+        private Sprite _default;
+        private Sprite _default_active;
 
         private void OnEnable()
         {
@@ -73,13 +76,76 @@ namespace UI
 
                 if ((l = LevelController.Instance.GetLevel(_world, _level.Name)) == null)
                 {
+                    _default = _image.sprite;
+                    _default_active = _button.spriteState.pressedSprite;
+
                     _image.sprite = Block;
 
                     SpriteState ss = new SpriteState();
                     ss.disabledSprite = Block;
                     ss.pressedSprite = BlockOn;
 
+                    IndexText.enabled = false;
+
                     _button.spriteState = ss;
+
+                    int cost = LevelPackage.GetWorld(_world).Cost;
+
+                    _button.onClick.AddListener(() =>
+                    {
+                        if (Application.isMobilePlatform)
+                        {
+                            AndroidNativeFunctions.ShowAlert(LocalController.Instance.L("market_level", "byu") + " " + cost + " " + LocalController.Instance.L("market_level", "b"), LocalController.Instance.L("market_level", "title"), LocalController.Instance.L("market_level", "yes"), LocalController.Instance.L("market_level", "no"), "", (DialogInterface d) =>
+                            {
+                                if (d == DialogInterface.Positive)
+                                {
+                                    if (MarketController.Instance.PMone.Money >= cost)
+                                    {
+                                        LevelController.Instance.OpenNew(_world, _level.LevelName);
+                                        MarketController.Instance.MinusMoney(cost);
+
+                                        _image.sprite = _default;
+
+                                        SpriteState sps = new SpriteState();
+                                        sps.pressedSprite = _default_active;
+                                        _button.spriteState = sps;
+
+                                        IndexText.enabled = true;
+
+                                        AndroidNativeFunctions.ShowToast(LocalController.Instance.L("market_level", "success"));
+
+                                        OnEnable();
+                                    }
+                                    else
+                                    {
+                                        AndroidNativeFunctions.ShowToast(LocalController.Instance.L("market_level", "no_b"));
+                                    }
+                                }
+                            });
+                        }
+                        else
+                        {
+                            if (MarketController.Instance.PMone.Money >= cost)
+                            {
+                                LevelController.Instance.OpenNew(_world, _level.LevelName);
+                                MarketController.Instance.MinusMoney(cost);
+
+                                _image.sprite = _default;
+
+                                SpriteState sps = new SpriteState();
+                                sps.pressedSprite = _default_active;
+                                _button.spriteState = sps;
+
+                                IndexText.enabled = true;
+
+                                OnEnable();
+                            }
+                            else
+                            {
+                                Debug.Log("No batteries!");
+                            }
+                        }
+                    });
                 }
                 else
                 {

@@ -15,8 +15,10 @@ ModelImporter:
     400006: destroy_platform_W2
     2300000: simple_platform_W2
     2300002: destroy_platform_W2
+    2300004: //RootNode
     3300000: simple_platform_W2
     3300002: destroy_platform_W2
+    3300004: //RootNode
     4300000: simple_platform_W2
     4300002: destroy_platform_W2
   materials:

@@ -42,4 +42,14 @@
     <element id="4">За цю гру можна і проголосувати!</element>
     <element id="5">Допоможи проекту! Постав нам оцінку!</element>
   </area>
+
+  <area id="market_level">
+    <element id="no_b">Недостатно енергії для покупки</element>
+    <element id="buy">Придбати рівень?</element>
+    <element id="b">енергії</element>
+    <element id="title">Закритий рівень</element>
+    <element id="yes">Так</element>
+    <element id="no">Ні</element>
+    <element id="success">Рівень успішно відкритий</element>
+  </area>
 </Local>

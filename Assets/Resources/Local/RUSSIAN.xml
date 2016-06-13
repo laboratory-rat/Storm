@@ -39,4 +39,14 @@
     <element id="4">НИЧТОЖЕСТВО!... Ой, не та игра. Проголосуй за приложение)</element>
     <element id="5">Лучший показатель нашей работы - Ваши оценки приложению.</element>
   </area>
+
+  <area id="market_level">
+    <element id="no_b">Извините, не достаточно батареек для покупки.</element>
+    <element id="buy">Открыть новый уровень?</element>
+    <element id="b">батареек</element>
+    <element id="title">Закрытый уровень</element>
+    <element id="yes">Да</element>
+    <element id="no">Нет</element>
+    <element id="success">Уровень успешно открытый</element>
+  </area>
 </Local>

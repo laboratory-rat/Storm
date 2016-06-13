@@ -29,23 +29,6 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Move2.1
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: {x: 0, y: 0, z: 0}
-        inSlope: {x: 0, y: 0, z: 72}
-        outSlope: {x: 0, y: 0, z: 72}
-        tangentMode: 0
-      - time: 5
-        value: {x: 0, y: 0, z: 360}
-        inSlope: {x: 0, y: 0, z: 72}
-        outSlope: {x: 0, y: 0, z: 72}
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
     path: Move2.1 (1)
   - curve:
       serializedVersion: 2
@@ -64,6 +47,23 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: Move2.1 (2)
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 72}
+        outSlope: {x: 0, y: 0, z: 72}
+        tangentMode: 0
+      - time: 5
+        value: {x: 0, y: 0, z: 360}
+        inSlope: {x: 0, y: 0, z: 72}
+        outSlope: {x: 0, y: 0, z: 72}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Move2.1 (3)
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
@@ -75,12 +75,6 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 1179540734
-      attribute: 4
-      script: {fileID: 0}
-      classID: 4
-      customType: 14
-      isPPtrCurve: 0
     - path: 3248343242
       attribute: 4
       script: {fileID: 0}
@@ -88,6 +82,12 @@ AnimationClip:
       customType: 14
       isPPtrCurve: 0
     - path: 3937442569
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 4088113736
       attribute: 4
       script: {fileID: 0}
       classID: 4
@@ -132,66 +132,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Move2.1
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 5
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.y
-    path: Move2.1
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 72
-        outSlope: 72
-        tangentMode: 10
-      - time: 5
-        value: 360
-        inSlope: 72
-        outSlope: 72
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.z
-    path: Move2.1
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 5
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: localEulerAnglesRaw.x
     path: Move2.1 (1)
     classID: 4
     script: {fileID: 0}
@@ -293,6 +233,66 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
     path: Move2.1 (2)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 5
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Move2.1 (3)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 5
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Move2.1 (3)
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 72
+        outSlope: 72
+        tangentMode: 10
+      - time: 5
+        value: 360
+        inSlope: 72
+        outSlope: 72
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Move2.1 (3)
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -302,8 +302,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Move2.1
+    attribute: m_LocalEulerAngles.z
+    path: Move2.1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -313,7 +313,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Move2.1
+    path: Move2.1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -322,8 +322,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Move2.1
+    attribute: m_LocalEulerAngles.x
+    path: Move2.1 (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -363,7 +363,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Move2.1 (2)
+    path: Move2.1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -373,7 +373,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Move2.1 (2)
+    path: Move2.1 (3)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -383,7 +383,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Move2.1 (2)
+    path: Move2.1 (3)
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

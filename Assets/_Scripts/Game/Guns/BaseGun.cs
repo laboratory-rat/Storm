@@ -21,7 +21,7 @@ namespace Game
         private bool _reloaded = true;
         private bool _roundStarted = false;
 
-        private float _roundTime = 0.1f;
+        private float _roundTime = 0.25f;
         private AudioSource _audio;
 
         private void Start()

@@ -48,7 +48,7 @@ namespace Game
         //private
 
         private bool _canRotate = false;
-        private Rigidbody _rb;
+        public Rigidbody _rb;
         private AudioSource _audio;
         private int _sleep = 0;
         private List<GameObject> _collisions = new List<GameObject>();
@@ -170,7 +170,7 @@ namespace Game
             //    }
             //}
 
-            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.normalized.z - _zAccel) >= 0.3f)
+            if (CanRotate && _canRotate && !IsGrounded && _sleep < 1 && Mathf.Abs(Input.acceleration.normalized.z - _zAccel) >= 0.35f)
             {
                 _audio.clip = SoundRotate;
                 _audio.Play();
