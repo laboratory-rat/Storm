@@ -165,7 +165,7 @@ namespace Controller
         {
             if (MinusMoney(COST_10))
             {
-                AddEnergy(5);
+                AddEnergy(10);
                 return true;
             }
 

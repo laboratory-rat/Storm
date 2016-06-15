@@ -158,7 +158,7 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
-                    /*
+                    
                     new Level
                     {
                         Name = "3",
@@ -167,6 +167,8 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
+                    
+
                     new Level
                     {
                         Name = "4",
@@ -174,6 +176,8 @@ namespace Controller
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
+
+                    /*
 
                     new Level
                     {

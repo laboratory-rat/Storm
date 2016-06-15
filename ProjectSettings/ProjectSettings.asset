@@ -90,14 +90,14 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.MadRat.Strom
-  bundleVersion: 0.9.22
+  bundleVersion: 0.9.24
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 188f26ddb23d4e24280a6fb9c9fde922
-  AndroidBundleVersionCode: 103
+  AndroidBundleVersionCode: 105
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -160,7 +160,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Projects_2.0/Storm/Keys/Strom.keystore
+  AndroidKeystoreName: D:/Projects/Games/Storm/Keys/Strom.keystore
   AndroidKeyaliasName: release
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

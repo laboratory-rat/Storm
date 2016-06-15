@@ -164,6 +164,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51, y: 83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1664069162}
   - {fileID: 1017774537}
@@ -182,7 +183,7 @@ Transform:
   - {fileID: 81409633}
   - {fileID: 1593781287}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1001 &221437538
 Prefab:
   m_ObjectHideFlags: 0
@@ -442,7 +443,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 464334, guid: 8a3e206ab9983cc48bf8f9ac1045fdbb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 464334, guid: 8a3e206ab9983cc48bf8f9ac1045fdbb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1054,7 +1055,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 464334, guid: 8a3e206ab9983cc48bf8f9ac1045fdbb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 464334, guid: 8a3e206ab9983cc48bf8f9ac1045fdbb, type: 2}
       propertyPath: m_LocalPosition.z
