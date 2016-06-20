@@ -46,7 +46,7 @@ namespace Controller
 
         public void CheckMusic()
         {
-            float back = ConfigController.Instance.Config.Backgroud == "1" ? 0f : -80f;
+            float back = ConfigController.Instance.Config.Backgroud == "1" ? -5f : -80f;
             float sfx = ConfigController.Instance.Config.Sfx == "1" ? 0f : -80f;
 
             Mixer.SetFloat("Back", back);

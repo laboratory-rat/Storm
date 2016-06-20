@@ -2076,6 +2076,10 @@ Prefab:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11492558, guid: 2a9cb445f8d68764d840c3c1f459b588, type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a9cb445f8d68764d840c3c1f459b588, type: 2}
   m_IsPrefabParent: 0
@@ -2159,11 +2163,11 @@ MonoBehaviour:
     BestTime: -1
     Flash: 0
   CurrentWorld: 
-  OpenLevelsOnLoad: 1
+  OpenLevelsOnLoad: 0
   WorldNames:
   - First
   - Second
-  LevelCounts: 0f00000004000000
+  LevelCounts: 0f00000008000000
 --- !u!114 &464858323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,7 +2351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
       propertyPath: androidProducts.Array.data[0].consumable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
       propertyPath: androidProducts.Array.data[1].name
@@ -2388,6 +2392,30 @@ Prefab:
     - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
       propertyPath: androidProducts.Array.data[6].id
       value: level_pack
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[1].consumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[2].consumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[3].consumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[4].consumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[5].consumable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407532, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}
+      propertyPath: androidProducts.Array.data[6].consumable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 822f6abcd3310e047870a8de9bc5eff7, type: 2}

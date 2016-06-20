@@ -1,5 +1,6 @@
 ﻿using admob;
 using Controller;
+using System.Collections;
 using UnityEngine;
 
 namespace Game.UI
@@ -27,6 +28,28 @@ namespace Game.UI
                 SoundOnGO.SetActive(false);
                 SoundOffGO.SetActive(true);
             }
+
+            StartCoroutine(CloseRevard());
+        }
+
+        public IEnumerator CloseRevard()
+        {
+            while (true)
+            {
+                if (!_adIsOn)
+                {
+                    try
+                    {
+                        Admob.Instance().removeBanner();
+                    }
+                    catch (System.Exception e)
+                    {
+                        Debug.Log(e.Message);
+                    }
+                }
+
+                yield return new WaitForSeconds(2f);
+            }
         }
 
         public void Show()
@@ -38,7 +61,7 @@ namespace Game.UI
             if (MarketController.Instance.PMone.ShowAD && Application.isMobilePlatform)
             {
                 Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7043369900", "ca-app-pub-9869209397937230/7043369900");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-                Admob.Instance().showBannerRelative(AdSize.WideSkyscraper, AdPosition.MIDDLE_RIGHT, 0);
+                Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.TOP_CENTER, 0);
                 _adIsOn = true;
             }
         }
@@ -64,6 +87,8 @@ namespace Game.UI
                 Admob.Instance().removeBanner();
                 _adIsOn = false;
             }
+
+            StopAllCoroutines();
         }
 
         public void Info()
@@ -99,6 +124,17 @@ namespace Game.UI
                 Admob.Instance().removeBanner();
                 _adIsOn = false;
             }
+
+            try
+            {
+                Admob.Instance().removeBanner();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
+            StopAllCoroutines();
 
             SceneController.Instance.ChangeScene(SceneController.MENU, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }

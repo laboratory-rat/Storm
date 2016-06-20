@@ -128,10 +128,12 @@ namespace Controller
             {
                 OpenWords.Add(new World(w));
 
-                if (OnLevelsChanged != null)
-                    OnLevelsChanged.Invoke();
+                
 
                 SaveProgress();
+
+                if (OnLevelsChanged != null)
+                    OnLevelsChanged.Invoke();
             }
             else
             {
@@ -220,10 +222,14 @@ namespace Controller
         {
             int index = OpenWords.Count;
 
+
+
             World w = new World(LevelPackage.GameWorlds[index]);
 
-            if (OnLevelsChanged != null)
-                OnLevelsChanged.Invoke();
+            OpenWorld(w.Name);
+
+            //if (OnLevelsChanged != null)
+                //OnLevelsChanged.Invoke();
         }
 
         #endregion Bool

@@ -50,9 +50,9 @@ namespace Game
                     var d1 = transform.position - ShootGO.transform.position;
                     var d2 = transform.position - _player.transform.position;
 
-                    //Debug.Log(Vector3.Angle(d1, d2));
+                    Debug.Log(Vector3.Angle(d1, d2));
 
-                    if (_reloaded && Vector3.Angle(d1, d2) <= 1f && !_player.IsDestroyed)
+                    if (_reloaded && Vector3.Angle(d1, d2) <= 10f && !_player.IsDestroyed)
                     {
                         Shoot();
                     }
@@ -62,6 +62,8 @@ namespace Game
 
         private void Shoot()
         {
+            Debug.Log("SS");
+
             if (!Round)
             {
                 var go = (GameObject)Instantiate(BulletPrefab, ShootGO.transform.position, ShootGO.transform.rotation);

@@ -444,7 +444,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 430102, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 430102, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1100,6 +1100,14 @@ Prefab:
       propertyPath: ExitPoint
       value: 
       objectReference: {fileID: 1199368021}
+    - target: {fileID: 167282, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439176, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
+      propertyPath: NewMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f95175c8fe5ea2488035e3d5f677faf, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
   m_IsPrefabParent: 0
@@ -5094,6 +5102,10 @@ Prefab:
       propertyPath: ExitPoint
       value: 
       objectReference: {fileID: 790019666}
+    - target: {fileID: 11439176, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
+      propertyPath: NewMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6bc4990007e708848a5acbc9bcbb0253, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddbfbae11139bd84f9a23cb26ea7b717, type: 2}
   m_IsPrefabParent: 0

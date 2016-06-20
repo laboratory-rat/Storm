@@ -147,7 +147,7 @@ namespace Controller
                         Name = "1",
                         LevelName = "W2L1",
                         Flash = FlashRate.Zero,
-                        Times = new int[]{ 100, 200 },
+                        Times = new int[]{ 42, 59 },
                     },
 
                     new Level
@@ -155,7 +155,7 @@ namespace Controller
                         Name = "2",
                         LevelName = "W2L2",
                         Flash = FlashRate.Zero,
-                        Times = new int[]{ 100, 200 },
+                        Times = new int[]{ 39, 51 },
                     },
 
                     
@@ -177,7 +177,7 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
-                    /*
+                    
 
                     new Level
                     {
@@ -187,6 +187,8 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
+                    
+
                     new Level
                     {
                         Name = "6",
@@ -194,6 +196,8 @@ namespace Controller
                         Flash = FlashRate.Zero,
                         Times = new int[]{ 100, 200 },
                     },
+
+                    
 
                     new Level
                     {
@@ -203,13 +207,17 @@ namespace Controller
                         Times = new int[]{ 100, 200 },
                     },
 
+                    
+
                     new Level
                     {
                         Name = "8",
                         LevelName = "W2L8",
                         Flash = FlashRate.Zero,
-                        Times = new int[]{ 100, 200 },
+                        Times = new int[]{ 50, 65 },
                     },
+
+                    /*
 
                     new Level
                     {

@@ -1,10 +1,8 @@
 fileFormatVersion: 2
-guid: 86e82a188d7ef134688a6a7414c92db0
-labels:
-- W2
-timeCreated: 1465131435
+guid: 1bd533b4f451e35408587bd35dc401f1
+timeCreated: 1466070137
 licenseType: Free
-DefaultImporter:
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 

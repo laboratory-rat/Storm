@@ -26,20 +26,23 @@ namespace UI
             _iap = FindObjectOfType<IAP>();
         }
 
-        private void CheckInternet()
+        private bool CheckInternet()
         {
             if (Application.isMobilePlatform)
             {
                 if (!AndroidNativeFunctions.isConnectInternet())
                 {
                     AndroidNativeFunctions.ShowToast("No internet connection");
+                    return false;
                 }
+                return true;
             }
+            return false;
         }
 
         public void Buy10B()
         {
-            if (_iap)
+            if (_iap && CheckInternet())
             {
                 _iap.purchase("10_batteries");
             }
@@ -47,7 +50,7 @@ namespace UI
 
         public void Buy50B()
         {
-            if (_iap)
+            if (_iap && CheckInternet())
             {
                 _iap.purchase("50_batteries");
             }
@@ -55,7 +58,7 @@ namespace UI
 
         public void Buy100B()
         {
-            if (_iap)
+            if (_iap && CheckInternet())
             {
                 _iap.purchase("100_batteries");
             }
@@ -63,7 +66,7 @@ namespace UI
 
         public void Buy250B()
         {
-            if (_iap)
+            if (_iap && CheckInternet())
             {
                 _iap.purchase("250_batteries");
             }
@@ -71,7 +74,7 @@ namespace UI
 
         public void BuyNoAd()
         {
-            if (_iap && MarketController.Instance.PMone.ShowAD)
+            if (_iap && MarketController.Instance.PMone.ShowAD && CheckInternet())
             {
                 _iap.purchase("no_ads");
             }
@@ -79,7 +82,7 @@ namespace UI
 
         public void BuyFullLifeB()
         {
-            if (_iap && MarketController.Instance.MaxEnergy != MarketController.Instance.PMone.Energy)
+            if (_iap && MarketController.Instance.MaxEnergy != MarketController.Instance.PMone.Energy && CheckInternet())
             {
                 _iap.purchase("full_energy");
             }
@@ -87,10 +90,18 @@ namespace UI
 
         public void BuyLevelPack()
         {
-            if (_iap && !LevelController.Instance.IsAllLP())
+            if (_iap && !LevelController.Instance.IsAllLP() && CheckInternet())
             {
                 _iap.purchase("level_pack");
             }
+
+            //Debug
+            /*
+            else
+            {
+                LevelController.Instance.OpenNexLevelPack();
+            }
+            */
         }
     }
 }

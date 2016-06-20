@@ -45,6 +45,8 @@ namespace Controller
         private void Awake()
         {
             Init();
+
+            OnSceneChanged += () => { Debug.Log("Xyu. Scene now is " + SceneManager.GetActiveScene().name); };
         }
 
         public void ReloadLevel(bool b)

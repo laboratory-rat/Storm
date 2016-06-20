@@ -61,7 +61,7 @@ namespace UI
             }
             else
             {
-                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("market_level", "no_b"));
+                AndroidNativeFunctions.ShowToast(LocalController.Instance.L("market_level", "no_e"));
             }
         }
 

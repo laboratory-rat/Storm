@@ -33,5 +33,10 @@ namespace Game.Platform
                 _audio.Play();
             }
         }
+
+        public void ChangeMaterial(Material m)
+        {
+            GetComponentInChildren<ParticleSystemRenderer>().material = m;
+        }
     }
 }

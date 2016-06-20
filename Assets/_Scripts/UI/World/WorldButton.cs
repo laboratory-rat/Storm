@@ -18,11 +18,13 @@ namespace UI
         private Button _button;
         private LevelSpacer _ls;
         private World _world;
+        private Sprite _baseImage;
 
         private void Start()
         {
             _button = GetComponent<Button>();
             _ls = FindObjectOfType<LevelSpacer>();
+            _baseImage = GetComponent<Image>().sprite;
 
             UpdateWorlds();
             LevelController.Instance.OnLevelsChanged += UpdateWorlds;
@@ -36,13 +38,18 @@ namespace UI
                 {
                     GetComponent<Image>().sprite = ClosedImage;
                     int i = LevelPackage.GetWorld(World).RequireFlash;
+                    TextComponent.enabled = false;
                     TextComponent.text = "0 / " + i;
                     _button.enabled = false;
                 }
                 else
                 {
+                    _button.enabled = true;
+                    TextComponent.enabled = true;
                     TextComponent.text = _world.Flash + " / " + _world.RequireFlash;
                     _button.onClick.AddListener(() => { Anim.SetTrigger(Trigger); _ls.PlaceLevels(World); });
+
+                    GetComponent<Image>().sprite = _baseImage;
 
                     if (!string.IsNullOrEmpty(NextWorld) && !LastWorld)
                     {

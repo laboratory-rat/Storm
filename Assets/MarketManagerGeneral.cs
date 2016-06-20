@@ -36,6 +36,7 @@ public class MarketManagerGeneral : MonoBehaviour
             case "no_ads":
                 MarketController.Instance.PMone.ShowAD = false;
                 MarketController.Instance.PMone.UnlimitedEnergy = true;
+                MarketController.Instance.AddMoney(0);
                 break;
 
             case "10_batteries":

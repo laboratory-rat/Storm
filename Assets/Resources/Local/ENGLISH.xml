@@ -45,6 +45,7 @@
   </area>
 
   <area id="market_level">
+    <element id="no_e">Sorry, not enough energy. Come back later.</element>
     <element id="no_b">Sorry, not enough batteries.</element>
     <element id="buy">Open new level?</element>
     <element id="b">batteries</element>

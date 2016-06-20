@@ -6,6 +6,7 @@ namespace Game.Platform
     public class TeleportEnter : _PlatformBase
     {
         public GameObject ExitPoint;
+        public Material NewMaterial;
 
         private AudioSource _audio;
 
@@ -13,6 +14,11 @@ namespace Game.Platform
         {
             base.Start();
             _audio = GetComponent<AudioSource>();
+
+            if (NewMaterial)
+            {
+                GetComponentInChildren<ParticleSystemRenderer>().material = NewMaterial;
+            }
         }
 
         public override void TriggerEnter(PlayerController player)
@@ -26,6 +32,11 @@ namespace Game.Platform
                 TeleportExit exit;
                 if ((exit = ExitPoint.GetComponent<TeleportExit>()))
                 {
+                    if (NewMaterial)
+                    {
+                        exit.ChangeMaterial(NewMaterial);
+                    }
+
                     exit.ExitSplash();
                 }
 

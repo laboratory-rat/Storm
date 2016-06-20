@@ -86,7 +86,7 @@ namespace Controller
             if (OnFirstEnter != null)
                 OnFirstEnter.Invoke();
 
-            MarketController.Instance.AddMoney(200);
+            //MarketController.Instance.AddMoney(200);
         }
 
         public void NewVersion()
@@ -94,8 +94,8 @@ namespace Controller
             if (OnNewVerion != null)
                 OnNewVerion.Invoke();
 
-            MarketController.Instance.PMone.Money = 199;
-            MarketController.Instance.AddEnergy(1);
+            //MarketController.Instance.PMone.Money = 199;
+            //MarketController.Instance.AddEnergy(1);
         }
 
         #endregion System

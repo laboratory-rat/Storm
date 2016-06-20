@@ -29,7 +29,7 @@ namespace Game.UI
                 if (MarketController.Instance.PMone.ShowAD)
                 {
                     Admob.Instance().initAdmob("ca-app-pub-9869209397937230/7682387909", "ca-app-pub-9869209397937230/7682387909");//admob id
-                    Admob.Instance().showBannerRelative(AdSize.IABBanner, AdPosition.BOTTOM_CENTER, 0);
+                    Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.TOP_CENTER, 0);
                     Admob.Instance().bannerEventHandler += NoEnergyManager_bannerEventHandler;
                     rev = true;
                 }

@@ -32,6 +32,16 @@ namespace Controller
 
         private void OnSceneWasLoaded()
         {
+
+            try
+            {
+                Admob.Instance().removeBanner();
+            }
+            catch(System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
             OpenAD();
         }
 
@@ -63,14 +73,32 @@ namespace Controller
 
         public void ShowMenuAd()
         {
+            try
+            {
+                Admob.Instance().removeBanner();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
             Admob.Instance().initAdmob("ca-app-pub-9869209397937230/5747570306", "ca-app-pub-9869209397937230/5747570306");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
             Admob.Instance().showBannerRelative(AdSize.Banner, AdPosition.TOP_CENTER, 0);
         }
 
         public void ShowLoadingAd()
         {
-            Admob.Instance().initAdmob("ca-app-pub-9869209397937230/9227793503", "ca-app-pub-9869209397937230/9227793503");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
-            Admob.Instance().showBannerRelative(AdSize.Leaderboard, AdPosition.TOP_CENTER, 0);
+            try
+            {
+                Admob.Instance().removeBanner();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
+            //Admob.Instance().initAdmob("ca-app-pub-9869209397937230/9227793503", "ca-app-pub-9869209397937230/9227793503");//admob id with format ca-app-pub-279xxxxxxxx/xxxxxxxx
+            //Admob.Instance().showBannerRelative(AdSize.Leaderboard, AdPosition.TOP_CENTER, 0);
         }
     }
 }

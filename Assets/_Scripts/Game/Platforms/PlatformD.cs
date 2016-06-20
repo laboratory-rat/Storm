@@ -27,6 +27,8 @@ namespace Game.Platform
             e.enabled = false;
         }
 
+        PlayerController p;
+
         public override void OnEnter(PlayerController player)
         {
             base.OnEnter(player);
@@ -36,6 +38,7 @@ namespace Game.Platform
                 e.enabled = true;
                 _parts.Play();
                 Debug.Log("Activated");
+                p = player;
                 StartCoroutine(Sleep(WaitTime, new action(D)));
             }
         }
@@ -48,6 +51,9 @@ namespace Game.Platform
             e.enabled = false;
             _col.enabled = false;
             _mesh.enabled = false;
+
+            p.DeleteCollision(gameObject);
+            p = null;
 
             StartCoroutine(Sleep(SleepTime, new action(A)));
         }
